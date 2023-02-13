@@ -1,12 +1,15 @@
 <script>
   import '../app.css';
   import Header from '$lib/components/Header.svelte';
+  import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<Header />
+<div class="flex flex-col min-h-screen">
+  <Header />
 
-<main>
-  <slot />
-</main>
+  <main class="grow">
+    <slot />
+  </main>
+</div>
 
-<footer />
+<Footer />

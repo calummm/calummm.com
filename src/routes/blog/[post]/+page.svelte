@@ -2,7 +2,7 @@
   export let data;
 </script>
 
-<article>
+<article class="md:container md:mx-auto p-2">
   FROM SLUG
   <h1>{data.meta.title}</h1>
 
@@ -13,7 +13,7 @@
   <!-- <data.Post />
 	<data.Content /> -->
 
-  <slot>
-    <!-- the mdsvex content will be slotted in here -->
-  </slot>
+  <!-- <slot>
+    
+  </slot> -->
 </article>
