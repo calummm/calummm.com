@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>Calummm</title>
+</svelte:head>
+
 <article class="md:container md:mx-auto p-2">
   <h1>Welcome</h1>
 
