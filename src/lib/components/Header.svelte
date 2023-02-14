@@ -6,11 +6,12 @@
     <!-- <li>
         <a href="/blog">Blog</a>
       </li> -->
-    <li><button class="w-16 h-16 rounded-full border-black border-2" /></li>
-    <li><button class="w-16 h-16 rounded-full border-black border-2" /></li>
+    <!-- <li><button class="w-16 h-16 rounded-full border-black border-2" /></li>
+    <li><button class="w-16 h-16 rounded-full border-black border-2" /></li> -->
     <li>
       <button
         class="w-16 h-16 rounded-full border-black border-2 flex justify-center items-center"
+        aria-labelledby="site menu"
       >
         <div class="space-y-2">
           <span class="block w-8 h-1 bg-black rounded-full" />

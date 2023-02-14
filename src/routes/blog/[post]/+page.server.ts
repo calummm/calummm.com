@@ -11,6 +11,7 @@ export async function load({
 
     return {
       PostContent: post.default.render().html,
+      // Content: post.default,
       meta: { ...post.metadata, slug: params.post },
     };
   } catch (err: unknown) {
