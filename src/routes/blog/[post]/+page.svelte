@@ -14,6 +14,21 @@
 
   <p>Published: {data.meta.date}</p>
 
+  {#if data.meta.tags.length}
+    <aside>
+      <h2>Tags:</h2>
+      <ul>
+        {#each data.meta.tags as category}
+          <li>
+            <a href="/blog/tag/{category}">
+              {category}
+            </a>
+          </li>
+        {/each}
+      </ul>
+    </aside>
+  {/if}
+
   {@html data.PostContent}
 
   <!-- <Content /> -->
