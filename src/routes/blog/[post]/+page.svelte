@@ -10,11 +10,12 @@
 </svelte:head>
 
 <article class="md:container md:mx-auto p-2">
+  <span>Home > {data.meta.category} > {data.meta.title}</span>
   <h1>{data.meta.title}</h1>
 
-  <p>Published: {data.meta.date}</p>
+  <p>Published: {data.meta.published}</p>
 
-  {#if data.meta.tags.length}
+  {#if data.meta.tags?.length}
     <aside>
       <h2>Tags:</h2>
       <ul>

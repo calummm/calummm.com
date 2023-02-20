@@ -12,7 +12,7 @@
           {post.meta.title}
         </a>
       </h2>
-      Published {post.meta.date}
+      Published {post.meta.published}
     </li>
   {/each}
 </ul>
