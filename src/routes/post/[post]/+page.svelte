@@ -7,6 +7,13 @@
 
 <svelte:head>
   <title>{data.meta.title} | Calummm</title>
+  <meta property="og:title" content={data.meta.title} />
+
+  <!-- <meta property="og:url" content="https://ahrefs.com/blog/open-graph-meta-tags/" /> -->
+  <meta property="og:image" content={data.meta.thumbnail} />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content={data.meta.description} />
+  <meta property="og:locale" content="en_AU" />
 </svelte:head>
 
 <article class="md:container md:mx-auto p-2">
