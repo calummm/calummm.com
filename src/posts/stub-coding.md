@@ -10,3 +10,5 @@ description: This is a short descriptive block of text that could appear in the 
 heroImage: some/url
 thumbnail: some/url
 ---
+
+## This is a second heading
