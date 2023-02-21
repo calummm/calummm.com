@@ -4,7 +4,7 @@ const config = defineConfig({
   extensions: ['.svelte.md', '.md', '.svx'],
 
   // layout: {
-  //     blog: 'src/routes/blog/post.svelte'
+  //     post: 'src/routes/post/post.svelte'
   //   },
 
   smartypants: {

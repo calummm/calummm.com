@@ -14,7 +14,7 @@
       <li class="shadow">
         <a
           class="flex gap-2 border-2 rounded border-black p-3"
-          href="/blog/{post.path}"
+          href="/post/{post.path}"
         >
           <div class="w-24 h-16 border border-black" />
           <div>

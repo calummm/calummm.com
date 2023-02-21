@@ -21,7 +21,7 @@
       <ul>
         {#each data.meta.tags as category}
           <li>
-            <a href="/blog/tag/{category}">
+            <a href="/post/tag/{category}">
               {category}
             </a>
           </li>

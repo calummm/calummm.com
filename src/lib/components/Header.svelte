@@ -4,7 +4,7 @@
   <nav />
   <ul class="flex gap-1">
     <!-- <li>
-        <a href="/blog">Blog</a>
+        <a href="/post">Blog</a>
       </li> -->
     <!-- <li><button class="w-16 h-16 rounded-full border-black border-2" /></li>
     <li><button class="w-16 h-16 rounded-full border-black border-2" /></li> -->
