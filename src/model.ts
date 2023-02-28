@@ -1,7 +1,8 @@
-import type { SvelteComponentTyped } from 'svelte';
+import type { SvelteComponent, SvelteComponentTyped } from 'svelte';
 
 export interface BlogData {
-  PostContent: unknown;
+  content: SvelteComponent;
+  // PostContent: unknown;
   // Content: SvelteComponentTyped<{ propertyName: string }>;
   meta: BlogMetaData;
 }
@@ -12,4 +13,4 @@ export interface BlogMetaData {
   tags: string[];
 }
 
-export interface BlogMetaData {}
+// export interface BlogMetaData {}

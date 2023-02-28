@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import type { BlogData } from 'src/model';
+import type { BlogData } from '../../../model';
 
 export async function load({
   params,
@@ -10,7 +10,8 @@ export async function load({
     const post = await import(`../../../posts/${params.post}.md`);
 
     return {
-      PostContent: post.default.render().html,
+      content: post.default,
+      // PostContent: post.default.render().html,
       // Content: post.default,
       meta: { ...post.metadata, slug: params.post },
     };

@@ -21,10 +21,10 @@ This is obviously the first post in what I hope will become a decent sized blog.
 
 ## What this, or any blog, needs
 
-- framework
-- organised structure
-- style system
-- Consistant coding patterns
+- [framework](#framework)
+- [organised structure](#organised-structure)
+- [style system](style-system)
+- [Consistant coding patterns](consistant-coding-patterns)
 - SEO
 - Open graph
 - Comment system
