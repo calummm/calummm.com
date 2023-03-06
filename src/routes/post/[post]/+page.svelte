@@ -32,7 +32,7 @@
   <span>Home > {data.meta.category} > {data.meta.title}</span>
   <h1 class="text-4xl">{data.meta.title}</h1>
 
-  <dl class="pt-2">
+  <dl class="pt-2 pb-6">
     <div class="flex gap-2">
       <dt>Published:</dt>
       <dd>{data.meta.published}</dd>
@@ -46,14 +46,14 @@
     {/if}
 
     {#if data.meta.tags?.length}
-      <div class="flex gap-2">
+      <div class="flex gap-2 flex-wrap">
         <dt>Tags:</dt>
 
         {#each data.meta.tags as category}
           <dd>
             <a
               href="/post/tag/{category}"
-              class="bg-orange-600 rounded-full py-1 px-2"
+              class="bg-orange-600 rounded-full py-1 px-2 whitespace-nowrap"
             >
               {category}
             </a>
@@ -70,32 +70,42 @@
 
 <style lang="scss" global>
   #post-contents {
+    // @apply gap-6;
+
     h2 {
-      @apply text-3xl pt-2;
+      @apply text-3xl pt-6 pb-3;
     }
     h3 {
-      @apply text-2xl pt-2;
+      @apply text-2xl pt-6 pb-3;
     }
     h4 {
-      @apply text-xl pt-2;
+      @apply text-xl pt-6 pb-3;
     }
     h5 {
-      @apply text-lg pt-2;
+      @apply text-lg pt-6 pb-3;
     }
     h6 {
-      @apply pt-2;
+      @apply pt-6 pb-3;
     }
 
     ul {
-      @apply list-disc list-inside ml-2;
+      @apply list-disc list-inside ml-4;
     }
 
     ol {
-      @apply list-decimal list-inside ml-2;
+      @apply list-decimal list-inside ml-4;
     }
 
     a {
       @apply text-blue-800 underline;
+    }
+
+    p {
+      @apply leading-relaxed;
+    }
+
+    p + p {
+      @apply py-3;
     }
 
     :where(h2, h3, h4, h5, h6) {
