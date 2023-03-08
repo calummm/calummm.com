@@ -10,7 +10,12 @@ export interface BlogData {
 export interface BlogMetaData {
   title: string;
   date: string;
+  category: string;
   tags: string[];
+  published: string;
+  updated?: string;
+  thumbnail?: string;
+  description?: string;
 }
 
 // export interface BlogMetaData {}

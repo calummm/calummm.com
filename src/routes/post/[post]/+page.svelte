@@ -1,5 +1,6 @@
 <script lang="ts">
-  import type { BlogData } from 'src/model';
+  import TagBubble from '$lib/components/Tag-bubble.svelte';
+  import type { BlogData } from '../../../../src/model';
 
   export let data: BlogData;
   // const { Content } = data;
@@ -30,9 +31,9 @@
 
 <article class="md:container md:mx-auto p-2">
   <span>Home > {data.meta.category} > {data.meta.title}</span>
-  <h1 class="text-4xl">{data.meta.title}</h1>
+  <h1 class="text-5xl my-6">{data.meta.title}</h1>
 
-  <dl class="pt-2 pb-6">
+  <dl class="mt-2 mb-6 flex flex-col gap-1">
     <div class="flex gap-2">
       <dt>Published:</dt>
       <dd>{data.meta.published}</dd>
@@ -49,14 +50,15 @@
       <div class="flex gap-2 flex-wrap">
         <dt>Tags:</dt>
 
-        {#each data.meta.tags as category}
+        {#each data.meta.tags as tagName}
           <dd>
-            <a
-              href="/post/tag/{category}"
+            <TagBubble {tagName} />
+            <!-- <a
+              href="/post/tag/{tag}"
               class="bg-orange-600 rounded-full py-1 px-2 whitespace-nowrap"
             >
-              {category}
-            </a>
+              {tag}
+            </a> -->
           </dd>
         {/each}
       </div>
@@ -71,29 +73,32 @@
 <style lang="scss" global>
   #post-contents {
     // @apply gap-6;
+    & > * {
+      @apply mb-6;
+    }
 
     h2 {
-      @apply text-3xl pt-6 pb-3;
+      @apply text-3xl mt-7 mb-4;
     }
     h3 {
-      @apply text-2xl pt-6 pb-3;
+      @apply text-2xl mt-7 mb-4;
     }
     h4 {
-      @apply text-xl pt-6 pb-3;
+      @apply text-xl mt-7 mb-4;
     }
     h5 {
-      @apply text-lg pt-6 pb-3;
+      @apply text-lg mt-7 mb-4;
     }
     h6 {
-      @apply pt-6 pb-3;
+      @apply pt-7 mb-7;
     }
 
     ul {
-      @apply list-disc list-inside ml-4;
+      @apply mb-7 list-disc list-inside ml-4;
     }
 
     ol {
-      @apply list-decimal list-inside ml-4;
+      @apply mb-7 list-decimal list-inside ml-4;
     }
 
     a {
@@ -101,11 +106,7 @@
     }
 
     p {
-      @apply leading-relaxed;
-    }
-
-    p + p {
-      @apply py-3;
+      @apply mb-7 leading-relaxed;
     }
 
     :where(h2, h3, h4, h5, h6) {

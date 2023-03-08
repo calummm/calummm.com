@@ -3,9 +3,10 @@ title: The First Post
 subtitle: The plan to build this website
 started: '2023-02-20'
 published: '2023-02-20'
-updated: '2023-02-20'
+updated: '2023-03-08'
 category: 'coding'
 tags:
+  - Ongoing
   - 'webdev'
   - sveltekit
   - blog
