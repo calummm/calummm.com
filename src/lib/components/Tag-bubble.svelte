@@ -2,15 +2,22 @@
   import { tagList, type Tag, type TagDef } from '$lib/utils/tags';
 
   export let tagName: string;
-  let tagDef: TagDef = tagList[tagName];
+  export let tag: Tag | null = null;
+
+  if (tagName && !tag) {
+    tag = {
+      name: tagName,
+      ...tagList[tagName],
+    };
+  }
 </script>
 
-{#if tagDef}
+{#if tag?.name}
   <a
-    href="/post/tag/{tagDef.urlName ?? tagName}"
-    class="rounded-full py-1 px-2 whitespace-nowrap"
-    style:color={tagDef.color || 'black'}
-    style:background-color={tagDef.backgroundColor || 'grey'}
+    href="/post/tag/{tag.urlName ?? tag.name}"
+    class="rounded-full py-1 px-3 whitespace-nowrap {tag.style ||
+      'bg-gray-300'}"
+    title={tag.description}
   >
     {tagName}
   </a>

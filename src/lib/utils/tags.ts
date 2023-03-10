@@ -1,35 +1,31 @@
 export interface TagDef {
-  // name: string;
-  urlName?: string;
   description: string;
-  color?: string;
-  backgroundColor: string;
+  urlName?: string;
+  style?: string;
 }
 
 export interface Tag extends TagDef {
   name: string;
-  count: number;
+  // count: number;
 }
 
 export const tagList: Record<string, TagDef> = {
   'Building this site': {
-    backgroundColor: 'red',
+    style: 'bg-purple-700 text-gray-50',
     description:
       'How and why I built this site and the thought process throughout',
   },
   webdev: {
-    backgroundColor: 'blue',
-    color: 'white',
-    description: 'Anything relating to build on the internet',
+    style: 'bg-teal-500',
+    description: 'Anything relating to building on the internet',
   },
   sveltekit: {
-    backgroundColor: 'orange',
+    style: 'bg-rose-700 text-gray-50',
     description:
       'SvelteKit is a framework for rapidly developing robust, performant web applications using Svelte. https://kit.svelte.dev/',
   },
   Ongoing: {
-    backgroundColor: 'yellow',
-    color: 'black',
+    style: 'bg-green-500',
     description:
       'A long running post with frequent updates. Check back for more!',
   },
