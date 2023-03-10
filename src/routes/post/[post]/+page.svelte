@@ -30,10 +30,16 @@
 </svelte:head>
 
 <article class="md:container md:mx-auto p-2">
-  <span>Home > {data.meta.category} > {data.meta.title}</span>
+  <span
+    >Home > <a style="" href="/post/category/{data.meta.category}"
+      >{data.meta.category}</a
+    >
+    > {data.meta.title}</span
+  >
+
   <h1 class="text-5xl my-6">{data.meta.title}</h1>
 
-  <dl class="mt-2 mb-6 flex flex-col gap-1">
+  <dl class="mt-2 mb-2 flex flex-col gap-1">
     <div class="flex gap-2">
       <dt>Published:</dt>
       <dd>{data.meta.published}</dd>
@@ -65,7 +71,7 @@
     {/if}
   </dl>
 
-  <div id="post-contents" class="pt-2">
+  <div id="post-contents" class="">
     <svelte:component this={data.content} />
   </div>
 </article>
@@ -75,6 +81,32 @@
     // @apply gap-6;
     & > * {
       @apply mb-6;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply text-3xl mt-7 mb-4;
+
+      .icon-link {
+        @apply text-black relative cursor-pointer;
+
+        &::before {
+          content: '#';
+          @apply px-3 absolute opacity-0;
+
+          left: -2ch;
+          top: 0;
+          line-height: 1;
+          opacity: 0;
+        }
+      }
+
+      &:hover .icon-link::before {
+        @apply opacity-100;
+      }
     }
 
     h2 {
@@ -94,11 +126,11 @@
     }
 
     ul {
-      @apply mb-7 list-disc list-inside ml-4;
+      @apply mt-2 list-disc list-inside ml-4;
     }
 
     ol {
-      @apply mb-7 list-decimal list-inside ml-4;
+      @apply mt-2 list-decimal list-inside ml-4;
     }
 
     a {
@@ -106,7 +138,7 @@
     }
 
     p {
-      @apply mb-7 leading-relaxed;
+      @apply mt-7 mb-0 leading-relaxed;
     }
 
     :where(h2, h3, h4, h5, h6) {
