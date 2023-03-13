@@ -31,7 +31,8 @@
 
 <article class="md:container md:mx-auto p-2">
   <span
-    >Home > <a style="" href="/post/category/{data.meta.category}"
+    ><!-- Home > -->
+    <a style="text-s" href="/post/category/{data.meta.category}"
       >{data.meta.category}</a
     >
     > {data.meta.title}</span

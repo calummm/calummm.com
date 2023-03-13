@@ -8,7 +8,9 @@
   export let data;
 </script>
 
-<div class="flex flex-col min-h-screen">
+<div
+  class="flex flex-col min-h-screen bg-white text-gray-800 dark:bg-slate-800 dark:text-gray-200"
+>
   <Header />
 
   {#key data.currentRoute}
