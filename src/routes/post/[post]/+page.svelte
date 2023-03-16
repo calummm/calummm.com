@@ -30,13 +30,14 @@
 </svelte:head>
 
 <article class="md:container md:mx-auto p-2">
-  <span
-    ><!-- Home > -->
+  <span>
+    <a href="/">Home</a>
+    >
     <a style="text-s" href="/post/category/{data.meta.category}"
       >{data.meta.category}</a
     >
-    > {data.meta.title}</span
-  >
+    > {data.meta.title}
+  </span>
 
   <h1 class="text-5xl my-6">{data.meta.title}</h1>
 

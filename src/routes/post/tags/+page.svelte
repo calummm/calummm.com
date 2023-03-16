@@ -2,14 +2,19 @@
   export let data;
 </script>
 
-<h1>Tags</h1>
+<article class="md:container md:mx-auto p-2">
+  <span>
+    <a href="/">Home</a>
+  </span>
+  <h1>Tags</h1>
 
-<ul>
-  {#each data.tags as tag}
-    <li>
-      <a href="./tag/{tag.name}">
-        {tag.name}:{tag.count}
-      </a>
-    </li>
-  {/each}
-</ul>
+  <ul>
+    {#each data.tags as tag}
+      <li>
+        <a href="./tag/{tag.name}">
+          {tag.name}:{tag.count}
+        </a>
+      </li>
+    {/each}
+  </ul>
+</article>
