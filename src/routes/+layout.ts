@@ -1,4 +1,4 @@
-export const load = ({ url }) => {
+export const load = ({ url: url }) => {
   const currentRoute = url.pathname;
 
   return {

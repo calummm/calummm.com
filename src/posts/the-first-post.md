@@ -12,8 +12,6 @@ tags:
   - Blog
   - Building this site
 description: So I want to make a website. It will be an assortment of my ideas, projects and my personal journey. Wish me luck.
-heroImage: some/url
-thumbnail: some/url
 ---
 
 Hello. My name is Calum.
@@ -22,17 +20,11 @@ This is obviously the first post in what I hope will become a decent sized blog.
 
 ## What this, or any blog, needs
 
-- [framework](#framework)
-- [organised structure](#organised-structure)
-- [style system](style-system)
-- [Consistant coding patterns](consistant-coding-patterns)
-- SEO
-- Open graph
-- Comment system
-- Branching rules
-- Who cares about cookies anyway
-- theming
-- A commitment to not be a jerk
+- [What this, or any blog, needs](#what-this-or-any-blog-needs)
+- [Framework](#framework)
+- [Organised structure](#organised-structure)
+- [Style system](#style-system)
+- [Consistent Coding patterns](#consistent-coding-patterns)
 
 ## Framework
 

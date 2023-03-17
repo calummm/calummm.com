@@ -16,7 +16,7 @@
   <a
     href="/post/tag/{tag.urlName ?? tag.name}"
     class="rounded-full py-1 px-3 whitespace-nowrap {tag.style ||
-      'bg-gray-300'}"
+      'bg-gray-300 text-black'}"
     title={tag.description}
   >
     {tagName}

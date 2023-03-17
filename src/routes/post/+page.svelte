@@ -1,18 +1,15 @@
 <script>
+  import PostCard from '$lib/components/Post-Card.svelte';
+
   export let data;
 </script>
 
-<h1>Blog</h1>
+<h1>Tag</h1>
 
-<ul>
+<ul class="mt-3 flex flex-col gap-3">
   {#each data.posts as post}
     <li>
-      <h2>
-        <a href={post.path}>
-          {post.meta.title}
-        </a>
-      </h2>
-      Published {post.meta.published}
+      <PostCard {post} />
     </li>
   {/each}
 </ul>

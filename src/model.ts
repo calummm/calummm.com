@@ -18,4 +18,9 @@ export interface BlogMetaData {
   description?: string;
 }
 
+export interface Post {
+  path: string;
+  meta: BlogMetaData;
+}
+
 // export interface BlogMetaData {}
