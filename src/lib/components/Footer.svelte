@@ -1,4 +1,6 @@
-<footer class="flex justify-between flex-wrap gap-3 p-3">
+<footer
+  class="flex justify-between flex-wrap gap-3 p-3 text-black dark:bg-slate-700 dark:text-gray-200"
+>
   <span class="grow">
     © 2023 and onwards, Calum Moir-Mattox. All Rights Reserved.
   </span>

@@ -97,7 +97,7 @@
 
         &::before {
           content: '#';
-          @apply px-3 absolute opacity-0;
+          @apply px-3 absolute opacity-0 text-black dark:text-gray-200;
 
           left: -2ch;
           top: 0;
@@ -136,7 +136,7 @@
     }
 
     a {
-      @apply text-blue-800 underline;
+      @apply text-blue-800 dark:text-blue-400 underline;
     }
 
     p {
