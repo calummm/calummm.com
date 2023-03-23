@@ -13,7 +13,6 @@ export const GET = async () => {
 
   const tags: Record<string, number> = {};
 
-  // console.log(allPosts);
   allPosts.forEach((post) => {
     if (post?.meta?.tags?.length) {
       post.meta.tags.forEach((tag: string) => {

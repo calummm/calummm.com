@@ -15,7 +15,6 @@ export const fetchMarkdownPosts = async () => {
         path: string;
       }> => {
         const { metadata } = await resolver();
-        console.log(metadata, path);
 
         const postPath = path.slice(11, -3);
 

@@ -4,7 +4,7 @@
   let darkTheme = false;
 
   if (browser) {
-    currentTheme = localStorage.getItem('theme') ?? 'light';
+    currentTheme = localStorage.getItem('theme') ?? window['theme'] ?? 'light';
     darkTheme = currentTheme === 'dark';
   }
 
