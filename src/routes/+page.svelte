@@ -6,6 +6,10 @@
 
 <svelte:head>
   <title>Calummm</title>
+  <meta
+    name="description"
+    content="A blog for humans. Coding, writing, receipes and projects."
+  />
 </svelte:head>
 
 <article class="md:container md:mx-auto p-2">
