@@ -1,5 +1,4 @@
-export const load = async ({ fetch, params }) => {
-  const { tag } = params;
+export const load = async ({ fetch /*, params*/ }) => {
   const response = await fetch(`/api/tags`);
   const tags = await response.json();
 

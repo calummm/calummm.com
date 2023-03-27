@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tagList, type Tag, type TagDef } from '$lib/utils/tags';
+  import { tagList, type Tag } from '$lib/utils/tags';
 
   export let tagName: string;
   export let tag: Tag | null = null;
@@ -21,4 +21,4 @@
   >
     {tagName}
   </a>
-{:else}{/if}
+{/if}

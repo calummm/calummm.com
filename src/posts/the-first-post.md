@@ -38,9 +38,3 @@ There are a lot of good articles already for creating blogs with Sveltekit such 
 
 - https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog
 - https://www.joshwcomeau.com/
-
-## Organised structure
-
-## Style system
-
-## Consistent Coding patterns
