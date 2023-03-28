@@ -29,7 +29,7 @@
   <meta property="og:locale" content="en_AU" />
 </svelte:head>
 
-<article class="md:container md:mx-auto p-2">
+<article class="md:container md:mx-auto text-base max-w-prose p-2">
   <span>
     <a href="/">Home</a>
     >
@@ -39,42 +39,44 @@
     > {data.meta.title}
   </span>
 
-  <h1 class="text-5xl my-6">{data.meta.title}</h1>
+  <div class="text-base sm:text-xl max-w-prose md:mx-auto">
+    <h1 class="text-5xl my-6">{data.meta.title}</h1>
 
-  <dl class="mt-2 mb-2 flex flex-col gap-1">
-    <div class="flex gap-2">
-      <dt>Published:</dt>
-      <dd>{data.meta.published}</dd>
-    </div>
-
-    {#if data.meta.updated && data.meta.updated !== data.meta.published}
+    <dl class="mt-2 mb-2 flex flex-col gap-1">
       <div class="flex gap-2">
-        <dt>Updated:</dt>
-        <dd>{data.meta.updated}</dd>
+        <dt>Published:</dt>
+        <dd>{data.meta.published}</dd>
       </div>
-    {/if}
 
-    {#if data.meta.tags?.length}
-      <div class="flex gap-2 flex-wrap">
-        <dt>Tags:</dt>
+      {#if data.meta.updated && data.meta.updated !== data.meta.published}
+        <div class="flex gap-2">
+          <dt>Updated:</dt>
+          <dd>{data.meta.updated}</dd>
+        </div>
+      {/if}
 
-        {#each data.meta.tags as tagName}
-          <dd>
-            <TagBubble {tagName} />
-            <!-- <a
+      {#if data.meta.tags?.length}
+        <div class="flex gap-2 flex-wrap">
+          <dt>Tags:</dt>
+
+          {#each data.meta.tags as tagName}
+            <dd>
+              <TagBubble {tagName} />
+              <!-- <a
               href="/post/tag/{tag}"
               class="bg-orange-600 rounded-full py-1 px-2 whitespace-nowrap"
             >
               {tag}
             </a> -->
-          </dd>
-        {/each}
-      </div>
-    {/if}
-  </dl>
+            </dd>
+          {/each}
+        </div>
+      {/if}
+    </dl>
 
-  <div id="post-contents" class="">
-    <svelte:component this={data.content} />
+    <div id="post-contents" class="sm:mx-3">
+      <svelte:component this={data.content} />
+    </div>
   </div>
 </article>
 
