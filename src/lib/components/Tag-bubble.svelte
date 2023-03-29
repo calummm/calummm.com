@@ -15,8 +15,7 @@
 {#if tag?.name}
   <a
     href="/post/tag/{tag.urlName ?? tag.name}"
-    class="rounded-full py-1 px-3 whitespace-nowrap {tag.style ||
-      'bg-gray-300 text-black'}"
+    class="rounded-full py-1 px-3 whitespace-nowrap bg-gray-200 text-black dark:bg-gray-700 dark:text-gray-200"
     title={tag.description}
   >
     {tagName}

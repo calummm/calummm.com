@@ -50,5 +50,8 @@
       "eslint",
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "tailwindcss-global-dark": "^1.0.1"
   }
 }

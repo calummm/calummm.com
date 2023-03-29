@@ -29,7 +29,7 @@
   <meta property="og:locale" content="en_AU" />
 </svelte:head>
 
-<article class="md:container md:mx-auto text-base max-w-prose p-2">
+<article class="sm:container sm:mx-auto text-base max-w-prose p-2">
   <span>
     <a href="/">Home</a>
     >
@@ -39,10 +39,10 @@
     > {data.meta.title}
   </span>
 
-  <div class="text-base sm:text-xl max-w-prose md:mx-auto">
-    <h1 class="text-5xl my-6">{data.meta.title}</h1>
+  <div class="text-base sm:text-xl max-w-prose sm:mx-auto">
+    <h1 class="text-5xl mt-16 mb-5">{data.meta.title}</h1>
 
-    <dl class="mt-2 mb-2 flex flex-col gap-1">
+    <dl class="text-base mt-5 mb-16 flex flex-col gap-2">
       <div class="flex gap-2">
         <dt>Published:</dt>
         <dd>{data.meta.published}</dd>
@@ -99,7 +99,7 @@
 
         &::before {
           content: '#';
-          @apply px-3 absolute opacity-0 text-black dark:text-gray-200;
+          @apply px-3 absolute opacity-0 text-black gdark:text-gray-200;
 
           left: -2ch;
           top: 0;
@@ -138,7 +138,7 @@
     }
 
     a {
-      @apply text-blue-800 dark:text-blue-400 underline;
+      @apply text-blue-800 gdark:text-blue-300 underline;
     }
 
     p {
