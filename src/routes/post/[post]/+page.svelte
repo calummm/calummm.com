@@ -4,7 +4,6 @@
   import type { BlogData } from '../../../../src/model';
 
   export let data: BlogData;
-  // const { Content } = data;
 </script>
 
 <svelte:head>
@@ -91,11 +90,9 @@
       reactionsEnabled="1"
       emitMetadata="1"
       inputPosition="top"
-      theme={document.body.classList.contains('dark') ? 'dark' : 'light'}
+      theme="preferred_color_scheme"
       lang="en"
       loading="lazy"
-      crossorigin="anonymous"
-      async
     />
   </div>
 </article>

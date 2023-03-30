@@ -1,6 +1,14 @@
 import { error } from '@sveltejs/kit';
 import type { BlogData } from '../../../model';
 
+// import { browser } from '$app/environment';
+
+// let giscusTheme = 'preferred_color_scheme';
+
+// if (browser) {
+//   giscusTheme = document?.body.classList.contains('dark') ? 'dark' : 'light';
+// }
+
 export async function load({
   params,
 }: {
