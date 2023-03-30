@@ -52,6 +52,7 @@
     ]
   },
   "dependencies": {
+    "@giscus/svelte": "^2.2.8",
     "tailwindcss-global-dark": "^1.0.1"
   }
 }

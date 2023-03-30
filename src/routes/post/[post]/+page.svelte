@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Giscus from '@giscus/svelte';
   import TagBubble from '$lib/components/Tag-bubble.svelte';
   import type { BlogData } from '../../../../src/model';
 
@@ -77,6 +78,25 @@
     <div id="post-contents" class="sm:mx-3">
       <svelte:component this={data.content} />
     </div>
+
+    <Giscus
+      id="comments"
+      term="Welcome to @giscus/react component!"
+      repo="calummm/calummm.com"
+      repoId="MDEwOlJlcG9zaXRvcnkzMzMzNzAyNDY="
+      category="Announcements"
+      categoryId="DIC_kwDOE97Ths4CRA-K"
+      mapping="og:title"
+      strict="1"
+      reactionsEnabled="1"
+      emitMetadata="1"
+      inputPosition="top"
+      theme={document.body.classList.contains('dark') ? 'dark' : 'light'}
+      lang="en"
+      loading="lazy"
+      crossorigin="anonymous"
+      async
+    />
   </div>
 </article>
 
