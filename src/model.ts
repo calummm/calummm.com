@@ -9,13 +9,15 @@ export interface BlogData {
 
 export interface BlogMetaData {
   title: string;
-  date: string;
+  description: string;
   category: string;
   tags: string[];
   published: string;
+  subtitle?: string;
   updated?: string;
+  started?: string;
   thumbnail?: string;
-  description?: string;
+  visible?: boolean;
 }
 
 export interface Post {

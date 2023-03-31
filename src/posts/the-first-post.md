@@ -5,9 +5,10 @@ started: '2023-02-20'
 published: '2023-02-20'
 updated: '2023-03-08'
 category: 'Coding'
+visible: true
 tags:
   - Ongoing
-  - 'webdev'
+  - webdev
   - sveltekit
   - Blog
   - Building this site
@@ -20,7 +21,6 @@ This is obviously the first post in what I hope will become a decent sized blog.
 
 ## What this, or any blog, needs
 
-- [What this, or any blog, needs](#what-this-or-any-blog-needs)
 - [Framework](#framework)
 - [Organised structure](#organised-structure)
 - [Style system](#style-system)

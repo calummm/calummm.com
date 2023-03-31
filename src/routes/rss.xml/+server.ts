@@ -8,11 +8,8 @@ export const prerender = true;
 
 export const GET = async () => {
   const allPosts = await fetchMarkdownPosts();
-  const sortedPosts = allPosts.sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
 
-  const body = render(sortedPosts);
+  const body = render(allPosts);
   const options = {
     headers: {
       'Cache-Control': 'max-age=0, s-maxage=3600',
