@@ -45,22 +45,28 @@
       <input
         type="checkbox"
         id="dark-theme"
-        class="theme-input"
+        class="theme-input peer opacity-0 absolute w-0 h-0"
         bind:checked={darkTheme}
         on:change={updateCurrentTheme}
       />
       <label
-        class="theme-label relative flex items-center justify-center w-14 h-14 rounded-full border-gray-700 dark:border-gray-200 border-2"
+        class="theme-label relative flex items-center justify-center w-11 h-11 rounded-full border-gray-700 dark:border-gray-200 border-2
+        peer-focus-visible:ring"
         for="dark-theme"
         aria-label="Change theme"
       >
         <span
           aria-hidden="true"
-          class="theme-light absolute flex items-center justify-center"
+          class="theme-light absolute flex items-center justify-center
+          before:absolute before:bg-gray-700 before:w-6 before:h-6 before:rotate-[25deg]
+          after:absolute after:bg-gray-700 after:w-6 after:h-6 after:rotate-[160deg]
+          peer-checked:invisible"
         />
         <span
           aria-hidden="true"
-          class="theme-dark absolute flex items-center justify-center invisible"
+          class="theme-dark absolute flex items-center justify-center invisible
+          w-6 h-6 rounded-full right-[0px] top-[0px] shadow-[-7px_7px_0_0_white]
+          peer-checked:visible"
         />
       </label>
     </li>
@@ -69,12 +75,6 @@
 
 <style lang="scss">
   .theme-input {
-    @apply opacity-0 absolute w-0 h-0;
-
-    &:focus ~ .theme-label {
-      @apply ring;
-    }
-
     &:checked ~ .theme-label {
       .theme-dark {
         @apply visible;
@@ -83,24 +83,5 @@
         @apply invisible;
       }
     }
-  }
-
-  .theme-label {
-  }
-
-  .theme-light {
-    &::after {
-      content: '';
-      @apply absolute bg-gray-700 w-7 h-7 rotate-[25deg];
-    }
-    &::before {
-      content: '';
-      @apply absolute bg-gray-700 w-7 h-7 rotate-[160deg];
-    }
-  }
-
-  .theme-dark {
-    @apply w-8 h-8 rounded-full right-[0px] top-[0px];
-    box-shadow: -9px 9px 0 0 white;
   }
 </style>
