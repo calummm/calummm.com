@@ -1,26 +1,5 @@
 <script lang="ts">
-  import { browser } from '$app/environment';
-
-  import SunLogo from '$lib/icons/sun-icon.svg?component';
-  import MoonLogo from '$lib/icons/moon-icon.svg?component';
-
-  let currentTheme = 'light';
-  let darkTheme = false;
-
-  if (browser) {
-    currentTheme = localStorage.getItem('theme') ?? window['theme'] ?? 'light';
-    darkTheme = currentTheme === 'dark';
-  }
-
-  const updateCurrentTheme = () => {
-    if (darkTheme) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+  import ThemeSwitcher from './Theme-switcher.svelte';
 </script>
 
 <header class="flex justify-between items-center md:container md:mx-auto p-2">
@@ -46,42 +25,7 @@
       </button> 
     </li>-->
     <li>
-      <input
-        type="checkbox"
-        id="dark-theme"
-        class="theme-input peer opacity-0 absolute w-0 h-0"
-        bind:checked={darkTheme}
-        on:change={updateCurrentTheme}
-      />
-      <label
-        class="theme-label relative flex items-center justify-center w-11 h-11 rounded-full border-gray-700 dark:border-gray-200 border-2
-        peer-focus-visible:ring"
-        for="dark-theme"
-        aria-label="Change theme"
-      >
-        <span aria-hidden="true" class="absolute theme-light">
-          <SunLogo width="32" />
-        </span>
-        <span
-          aria-hidden="true"
-          class="absolute text-gray-200 invisible theme-dark"
-        >
-          <MoonLogo width="32" />
-        </span>
-      </label>
+      <ThemeSwitcher />
     </li>
   </ul>
 </header>
-
-<style lang="scss">
-  .theme-input {
-    &:checked ~ .theme-label {
-      .theme-dark {
-        @apply visible;
-      }
-      .theme-light {
-        @apply invisible;
-      }
-    }
-  }
-</style>

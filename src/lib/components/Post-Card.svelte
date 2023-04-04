@@ -6,7 +6,7 @@
 </script>
 
 <a
-  class="flex flex-col sm:flex-row gap-6 sm:gap-4 rounded transition-colors p-3
+  class="flex flex-col sm:flex-row gap-6 sm:gap-4 rounded hover:transition-colors p-3
   bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
   href="/post/{post.path}"
 >

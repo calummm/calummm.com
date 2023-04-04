@@ -10,7 +10,7 @@
           window.matchMedia('(prefers-color-scheme: dark)').matches)
       ) {
         document.documentElement.classList.add('dark');
-        window.theme = 'dark';
+        localStorage.setItem('theme', 'dark');
       }
     </script>
 

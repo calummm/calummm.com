@@ -13,6 +13,7 @@ export interface BlogMetaData {
   category: string;
   tags: string[];
   published: string;
+  slug: string;
   subtitle?: string;
   updated?: string;
   started?: string;
