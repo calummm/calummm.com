@@ -1,5 +1,9 @@
 <script lang="ts">
   import { browser } from '$app/environment';
+
+  import SunLogo from '$lib/icons/sun-icon.svg?component';
+  import MoonLogo from '$lib/icons/moon-icon.svg?component';
+
   let currentTheme = 'light';
   let darkTheme = false;
 
@@ -55,19 +59,15 @@
         for="dark-theme"
         aria-label="Change theme"
       >
+        <span aria-hidden="true" class="absolute theme-light">
+          <SunLogo width="32" />
+        </span>
         <span
           aria-hidden="true"
-          class="theme-light absolute flex items-center justify-center
-          before:absolute before:bg-gray-700 before:w-6 before:h-6 before:rotate-[25deg]
-          after:absolute after:bg-gray-700 after:w-6 after:h-6 after:rotate-[160deg]
-          peer-checked:invisible"
-        />
-        <span
-          aria-hidden="true"
-          class="theme-dark absolute flex items-center justify-center invisible
-          w-6 h-6 rounded-full right-[0px] top-[0px] shadow-[-7px_7px_0_0_white]
-          peer-checked:visible"
-        />
+          class="absolute text-gray-200 invisible theme-dark"
+        >
+          <MoonLogo width="32" />
+        </span>
       </label>
     </li>
   </ul>
