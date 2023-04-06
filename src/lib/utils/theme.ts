@@ -1,29 +1,36 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
-export const theme = writable('dark');
-export const themes = ['dark', 'light'];
+function createTheme() {
+  const initialValue = browser
+    ? localStorage.getItem('theme') ?? 'dark'
+    : 'dark';
 
-if (browser) {
-  theme.set(localStorage.getItem('theme') ?? 'dark');
+  const { subscribe, set, update } = writable<string>(initialValue);
+
+  return {
+    subscribe,
+    nextTheme: () =>
+      update((theme: string) => {
+        const theNextTheme = ((theme) => {
+          const currentIndex = themes.indexOf(theme);
+          if (currentIndex === -1) {
+            return themes[0];
+          }
+
+          return themes[currentIndex + 1] ?? themes[0];
+        })(theme);
+
+        updateGlobalTheme(theNextTheme);
+
+        return theNextTheme;
+      }),
+    set,
+  };
 }
 
-export const nextTheme = async () => {
-  theme.update((theme: string) => {
-    const theNextTheme = ((theme) => {
-      const currentIndex = themes.indexOf(theme);
-      if (currentIndex === -1) {
-        return themes[0];
-      }
-
-      return themes[currentIndex + 1] ?? themes[0];
-    })(theme);
-
-    updateGlobalTheme(theNextTheme);
-
-    return theNextTheme;
-  });
-};
+export const theme = createTheme();
+export const themes = ['dark', 'light'];
 
 const updateGlobalTheme = (theme: string) => {
   localStorage.setItem('theme', theme);

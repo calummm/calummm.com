@@ -1,13 +1,13 @@
 <script lang="ts">
   import SunLogo from '$lib/icons/sun-icon.svg?component';
   import MoonLogo from '$lib/icons/moon-icon.svg?component';
-  import { nextTheme, theme } from '$lib/utils/theme';
+  import { theme } from '$lib/utils/theme';
 
   $: isDarkMode = $theme === 'dark';
 </script>
 
 <button
-  on:click={nextTheme}
+  on:click={theme.nextTheme}
   aria-pressed={isDarkMode}
   class="rounded-full ring-offset-2"
 >
