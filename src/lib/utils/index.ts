@@ -1,4 +1,4 @@
-import type { BlogMetaData } from '../../../src/model';
+import type { BlogMetaData } from '$lib/model';
 
 /**
  *

@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import type { BlogData } from '../../../model';
+import type { BlogData } from '$lib/model';
 
 // import { browser } from '$app/environment';
 

@@ -1,7 +1,7 @@
 <script lang="ts">
   import Giscus from '@giscus/svelte';
   import TagBubble from '$lib/components/Tag-bubble.svelte';
-  import type { BlogData } from '../../../../src/model';
+  import type { BlogData } from '$lib/model';
 
   export let data: BlogData;
 </script>
