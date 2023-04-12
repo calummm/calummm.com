@@ -3,6 +3,8 @@
   // import splash from '$lib/assets/images/splash.png';
 
   export let post: Post;
+
+  let imageName = `/images/posts/${post.meta.image || 'splash-thumb'}`;
 </script>
 
 <a
@@ -12,11 +14,10 @@
 >
   <!-- <div class="w-24 h-16 border border-black dark:border-gray-200" /> -->
   <div class="sm:max-w-[30%]">
-    <img
-      alt=""
-      class="aspect-[5/3]"
-      src={post.meta.thumbnail || '/images/splash-thumb.webp'}
-    />
+    <picture class="aspect-[4/3]">
+      <source srcset="{imageName}.webp 1x, {imageName}_2x.webp 2x" />
+      <img alt="" src="{imageName}.webp" />
+    </picture>
   </div>
   <!-- class="w-[100px] h-[60px]" -->
   <div class="">

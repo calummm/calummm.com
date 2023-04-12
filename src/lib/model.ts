@@ -17,7 +17,7 @@ export interface BlogMetaData {
   subtitle?: string;
   updated?: string;
   started?: string;
-  thumbnail?: string;
+  image?: string;
   visible?: boolean;
 }
 
