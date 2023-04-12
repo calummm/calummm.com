@@ -15,7 +15,7 @@
     <img
       alt=""
       class="aspect-[5/3]"
-      src={post.meta.thumbnail || '/images/splash.png'}
+      src={post.meta.thumbnail || '/images/splash-thumb.webp'}
     />
   </div>
   <!-- class="w-[100px] h-[60px]" -->

@@ -13,11 +13,12 @@ tags:
   - Blog
   - Building this site
 description: So I want to make a website. It will be an assortment of my ideas, projects and my personal journey. Wish me luck.
+thumbnail: images/first-post.webp
 ---
 
 Hello. My name is Calum.
 
-This is obviously the first post in what I hope will become a decent sized blog. I hope by committing to attempting to, hopefully, have at least one commit per day to Github, this will encourage me to be more consistent. said every dev ever. Wish me luck.
+This is obviously the first post in what I hope will become a decent-sized blog. I hope by committing to attempting to, hopefully, have at least one commit per day to Github, this will encourage me to be more consistent. said every dev ever. Wish me luck.
 
 ## What this, or any blog, needs
 

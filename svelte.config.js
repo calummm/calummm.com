@@ -14,6 +14,9 @@ const config = {
 
   kit: {
     adapter: adapter(),
+    alias: {
+      posts: 'src/posts',
+    },
   },
 };
 
