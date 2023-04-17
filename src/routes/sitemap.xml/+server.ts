@@ -26,7 +26,7 @@ export async function GET(event) {
         (post) =>
           `
           <url>
-            <loc>${website}/posts/${post?.path}</loc>
+            <loc>${website}/post/${post?.path}</loc>
             <changefreq>daily</changefreq>
             <priority>0.7</priority>
           </url>`
