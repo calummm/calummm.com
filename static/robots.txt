@@ -1,6 +1,7 @@
 User-agent: * 
 Disallow: /_app/
 Disallow: /*.js$
+Disallow: /*.mjs$
 Disallow: /*.json
 
 Sitemap: https://calummm.com/sitemap.xml
