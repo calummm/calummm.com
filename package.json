@@ -7,7 +7,9 @@
     "build": "vite build",
     "package": "svelte-kit package",
     "preview": "vite preview",
-    "test": "playwright test",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --check --plugin-search-dir=. . && eslint .",
@@ -25,6 +27,7 @@
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "@vite-pwa/sveltekit": "^0.2.1",
+    "@vitest/coverage-c8": "^0.30.1",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
@@ -45,7 +48,8 @@
     "tailwindcss-global-dark": "^1.0.1",
     "tslib": "^2.5.0",
     "typescript": "^4.9.5",
-    "vite": "^4.2.1"
+    "vite": "^4.2.1",
+    "vitest": "^0.30.1"
   },
   "type": "module",
   "lint-staged": {

@@ -27,6 +27,11 @@ const config = {
       },
     }),
   ],
+  test: {
+    coverage: {
+      reporter: ['cobertura', 'text'],
+    },
+  },
 };
 
 export default config;
