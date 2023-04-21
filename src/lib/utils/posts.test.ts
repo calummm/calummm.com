@@ -1,5 +1,5 @@
 import { describe, it, afterEach, test, expect } from 'vitest';
-import { fetchMarkdownPosts } from '.';
+import { fetchMarkdownPosts } from './posts';
 
 afterEach(() => {
   // host.remove()

@@ -1,4 +1,4 @@
-import { fetchMarkdownPosts } from '$lib/utils';
+import { fetchMarkdownPosts } from '$lib/utils/posts';
 import { json } from '@sveltejs/kit';
 
 export interface Tag {

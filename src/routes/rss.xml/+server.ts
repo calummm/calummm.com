@@ -1,4 +1,5 @@
-import { fetchMarkdownPosts } from '$lib/utils';
+import type { Post } from '$lib/model';
+import { fetchMarkdownPosts } from '$lib/utils/posts';
 
 const siteURL = 'https://calummm.com';
 const siteTitle = 'Calummm';
@@ -20,7 +21,7 @@ export const GET = async () => {
   return new Response(body, options);
 };
 
-const render = (posts) => `<?xml version="1.0" encoding="UTF-8" ?>
+const render = (posts: Post[]) => `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title>${siteTitle}</title>
@@ -34,7 +35,7 @@ ${posts
 <title>${post.meta.title}</title>
 <link>${siteURL}/post/${post.path}</link>
 <description>${post.meta.title}</description>
-<pubDate>${new Date(post.meta.date).toUTCString()}</pubDate>
+<pubDate>${new Date(post.meta.published).toUTCString()}</pubDate>
 </item>`
   )
   .join('')}
