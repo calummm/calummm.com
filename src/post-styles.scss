@@ -1,0 +1,68 @@
+@tailwind components;
+
+@layer components {
+    /* Mdsvex formatting  */
+    #post-contents {
+      & > * {
+        @apply mb-6;
+      }
+  
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        @apply text-3xl mt-7 mb-4;
+  
+        .icon-link {
+          @apply text-black relative cursor-pointer;
+  
+          &::before {
+            content: '#';
+            @apply px-3 absolute opacity-0 text-black dark:text-gray-200;
+  
+            left: -2ch;
+            top: 0;
+            line-height: 1;
+            opacity: 0;
+          }
+        }
+  
+        &:hover .icon-link::before {
+          @apply opacity-100;
+        }
+      }
+  
+      h2 {
+        @apply text-3xl mt-7 mb-4;
+      }
+      h3 {
+        @apply text-2xl mt-7 mb-4;
+      }
+      h4 {
+        @apply text-xl mt-7 mb-4;
+      }
+      h5 {
+        @apply text-lg mt-7 mb-4;
+      }
+      h6 {
+        @apply pt-7 mb-7;
+      }
+  
+      ul {
+        @apply mt-2 list-disc list-inside ml-4;
+      }
+  
+      ol {
+        @apply mt-2 list-decimal list-inside ml-4;
+      }
+  
+      a {
+        @apply text-blue-800 dark:text-blue-300 underline;
+      }
+  
+      p {
+        @apply mt-7 mb-0 leading-relaxed;
+      }
+    }
+}
