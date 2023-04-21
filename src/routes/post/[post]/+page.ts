@@ -1,5 +1,5 @@
-import { error } from '@sveltejs/kit';
 import type { BlogData } from '$lib/model';
+import { error } from '@sveltejs/kit';
 
 // import { browser } from '$app/environment';
 
@@ -13,7 +13,7 @@ export async function load({
   params,
 }: {
   params: { post: string };
-}): Promise<BlogData> {
+}): Promise<BlogData & { content: any }> {
   try {
     const post = await import(`../../../posts/${params.post}.md`);
 

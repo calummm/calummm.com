@@ -3,7 +3,7 @@
   import Header from '$lib/components/Header.svelte';
   import '../app.css';
   import '../code-styles.scss';
-  import '../post-styles.scss';
+  // import '../post-styles.scss';
 
   import { fade } from 'svelte/transition';
 
@@ -11,7 +11,7 @@
 </script>
 
 <div
-  class="flex flex-col min-h-screen bg-white text-gray-800 dark:bg-slate-800 dark:text-gray-200"
+  class="flex flex-col min-h-screen bg-white text-gray-800 dark:bg-neutral-800 dark:text-gray-200"
 >
   <Header />
 

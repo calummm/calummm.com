@@ -1,3 +1,5 @@
+import type { Post } from '$lib/model.js';
+
 export const load = async ({ fetch, params }) => {
   const { category } = params;
   const categorySan = params.category?.toLowerCase();
@@ -5,7 +7,7 @@ export const load = async ({ fetch, params }) => {
   const allPosts = await response.json();
 
   const posts = allPosts.filter(
-    (post) => post.meta.category.toLowerCase() === categorySan
+    (post: Post) => post.meta.category.toLowerCase() === categorySan
   );
 
   return {

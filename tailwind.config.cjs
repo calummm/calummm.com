@@ -5,5 +5,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('tailwindcss-global-dark')],
+  plugins: [require('@tailwindcss/typography', 'tailwindcss-global-dark')],
 };

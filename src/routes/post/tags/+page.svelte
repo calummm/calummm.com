@@ -1,5 +1,6 @@
-<script>
-  export let data;
+<script lang="ts">
+  import type { Tag } from '../../api/tags/+server.js';
+  export let data: { tags: Tag[] };
 </script>
 
 <article class="md:container md:mx-auto p-2">

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Giscus from '@giscus/svelte';
   import TagBubble from '$lib/components/Tag-bubble.svelte';
   import type { BlogData } from '$lib/model';
+  import Giscus from '@giscus/svelte';
 
-  export let data: BlogData;
+  export let data: BlogData & { content: any };
 </script>
 
 <svelte:head>
@@ -13,11 +13,11 @@
   <meta property="og:url" content="https://calummm.com/post/{data.meta.slug}" />
   <meta
     property="og:image"
-    content={data.meta.thumbnail || 'https://calummm.com/images/splash.png'}
+    content={data.meta.image || 'https://calummm.com/images/splash.png'}
   />
   <meta
     property="twitter:image"
-    content={data.meta.thumbnail || 'https://calummm.com/images/splash.png'}
+    content={data.meta.image || 'https://calummm.com/images/splash.png'}
   />
   <meta property="og:type" content="article" />
   <meta
@@ -32,11 +32,11 @@
 <article class="sm:container sm:mx-auto text-base max-w-prose p-2">
   <span>
     <a href="/">Home</a>
-    >
+    &rsaquo;
     <a style="text-s" href="/post/category/{data.meta.category}"
       >{data.meta.category}</a
     >
-    > {data.meta.title}
+    &rsaquo; {data.meta.title}
   </span>
 
   <div class="text-base sm:text-xl max-w-prose sm:mx-auto">
@@ -74,7 +74,10 @@
       {/if}
     </dl>
 
-    <div id="post-contents" class="sm:mx-3">
+    <div
+      id="post-contents"
+      class="prose prose-lg prose-neutral dark:prose-invert"
+    >
       <svelte:component this={data.content} />
     </div>
 
@@ -96,90 +99,3 @@
     />
   </div>
 </article>
-
-<style lang="scss" global>
-  #post-contents {
-    // @apply gap-6;
-    & > * {
-      @apply mb-6;
-    }
-
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      @apply text-3xl mt-7 mb-4;
-
-      .icon-link {
-        @apply text-black relative cursor-pointer;
-
-        &::before {
-          content: '#';
-          @apply px-3 absolute opacity-0 text-black gdark:text-gray-200;
-
-          left: -2ch;
-          top: 0;
-          line-height: 1;
-          opacity: 0;
-        }
-      }
-
-      &:hover .icon-link::before {
-        @apply opacity-100;
-      }
-    }
-
-    h2 {
-      @apply text-3xl mt-7 mb-4;
-    }
-    h3 {
-      @apply text-2xl mt-7 mb-4;
-    }
-    h4 {
-      @apply text-xl mt-7 mb-4;
-    }
-    h5 {
-      @apply text-lg mt-7 mb-4;
-    }
-    h6 {
-      @apply pt-7 mb-7;
-    }
-
-    ul {
-      @apply mt-2 list-disc list-inside ml-4;
-    }
-
-    ol {
-      @apply mt-2 list-decimal list-inside ml-4;
-    }
-
-    a {
-      @apply text-blue-800 gdark:text-blue-300 underline;
-    }
-
-    p {
-      @apply mt-7 mb-0 leading-relaxed;
-    }
-
-    :where(h2, h3, h4, h5, h6) {
-      //   .icon-link {
-      //     position: relative;
-
-      //     &::before {
-      //       content: '#';
-      //       position: absolute;
-      //       left: -1ch;
-      //       top: 0;
-      //       line-height: 1;
-      //       opacity: 0;
-      //       text-decoration: underline;
-      //     }
-      //   }
-
-      //   &:hover .icon-link::before {
-      //     opacity: 1;
-      //   }
-    }
-  }
-</style>

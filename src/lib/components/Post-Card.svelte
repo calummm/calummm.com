@@ -9,7 +9,7 @@
 
 <a
   class="flex flex-col sm:flex-row gap-6 sm:gap-4 rounded hover:transition-colors p-3
-  bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
+  bg-gray-100 hover:bg-gray-200 dark:bg-neutral-700 dark:hover:bg-neutral-600"
   href="/post/{post.path}"
 >
   <!-- <div class="w-24 h-16 border border-black dark:border-gray-200" /> -->
