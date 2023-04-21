@@ -28,8 +28,27 @@ const config = {
     }),
   ],
   test: {
+    globals: true,
+    environment: 'jsdom',
     coverage: {
       reporter: ['cobertura', 'text'],
+      all: true,
+      exclude: [
+        'coverage/**',
+        '{build,dist,.svelte-kit,.netlify}/**',
+        'packages/*/test{,s}/**',
+        '**/*model.{js,ts}',
+        '**/*.d.ts',
+        'cypress/**',
+        'test{,s}/**',
+        'test{,-*}.{js,cjs,mjs,ts,tsx,jsx}',
+        '**.config.*',
+        '**/*{.,-}test.{js,cjs,mjs,ts,tsx,jsx}',
+        '**/*{.,-}spec.{js,cjs,mjs,ts,tsx,jsx}',
+        '**/__tests__/**',
+        '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*',
+        '**/.{eslint,mocha,prettier}rc.{js,cjs,yml}',
+      ],
     },
   },
 };
