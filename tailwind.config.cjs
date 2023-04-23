@@ -5,5 +5,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography', 'tailwindcss-global-dark')],
+  plugins: [
+    require('@tailwindcss/typography', 'tailwindcss-global-dark'),
+    function ({ addVariant }) {
+      addVariant('child', '& > *');
+    },
+  ],
 };
