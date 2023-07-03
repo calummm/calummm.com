@@ -1,6 +1,6 @@
+import svg from '@poppanator/sveltekit-svg';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
-import svg from '@poppanator/sveltekit-svg';
 // import path from 'path';
 
 /** @type {import('vite').UserConfig} */
