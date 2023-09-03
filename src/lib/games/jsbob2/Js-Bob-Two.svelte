@@ -8,6 +8,46 @@
 
   let canvas: HTMLCanvasElement;
 
+  const levelData = {
+    objects: [
+      {
+        type: 'player',
+        x: 40,
+        y: 20,
+        xv: 0,
+        yv: 0,
+      },
+      {
+        type: 'block',
+        x: 180,
+        y: 20,
+        w: 40,
+        h: 70,
+      },
+      {
+        type: 'block',
+        x: 230,
+        y: 90,
+        w: 40,
+        h: 70,
+      },
+      {
+        type: 'platform',
+        x: 220,
+        y: 130,
+        w: 100,
+        h: 10,
+      },
+      {
+        type: 'platform',
+        x: 220,
+        y: 130,
+        w: 100,
+        h: 10,
+      },
+    ],
+  };
+
   interface BasicObject {
     y: number;
     x: number;
@@ -383,7 +423,7 @@
           ctx.clearRect(0, 0, viewWidth, viewHeight);
           ctx.save();
 
-          ctx.translate(player.x, player.y);
+          ctx.translate(player.x, player.y * -1 + 200);
           ctx.fillStyle = 'rgba(0, 0, 255, 1.0)';
           ctx.fillRect(0, 0, player.width, player.height);
 
