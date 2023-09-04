@@ -8,7 +8,21 @@
 
   let canvas: HTMLCanvasElement;
 
-  const levelData = {
+  interface LevelDataObject {
+    type: 'player' | 'ground' | 'block' | 'platform';
+    x: number;
+    y: number;
+    w?: number;
+    h?: number;
+    xv?: number;
+    yv?: number;
+  }
+
+  interface LevelData {
+    objects: LevelDataObject[];
+  }
+
+  const levelData: LevelData = {
     objects: [
       {
         type: 'player',
@@ -16,6 +30,13 @@
         y: 20,
         xv: 0,
         yv: 0,
+      },
+      {
+        type: 'ground',
+        x: 0,
+        y: 10,
+        w: 500,
+        h: 10,
       },
       {
         type: 'block',
@@ -80,7 +101,7 @@
       canvas.width = viewWidth;
 
       console.log(canvas);
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d', { alpha: true });
 
       const levelComp = window.getComputedStyle(level);
       const levelWidth = parseInt(levelComp.width);
@@ -423,9 +444,22 @@
           ctx.clearRect(0, 0, viewWidth, viewHeight);
           ctx.save();
 
-          ctx.translate(player.x, player.y * -1 + 200);
+          //player
+          ctx.save();
+          ctx.translate(player.x, player.y);
           ctx.fillStyle = 'rgba(0, 0, 255, 1.0)';
           ctx.fillRect(0, 0, player.width, player.height);
+          ctx.restore();
+
+          //ground
+          ctx.save();
+          levelData.objects
+            .filter((object) => object.type === 'ground')
+            .forEach((ground) => {
+              ctx.fillStyle = 'rgba(200, 200, 200, 1.0)';
+              ctx.fillRect(ground.x, ground.y, ground.w ?? 0, ground.h ?? 0);
+            });
+          ctx.restore();
 
           ctx.restore();
         }
