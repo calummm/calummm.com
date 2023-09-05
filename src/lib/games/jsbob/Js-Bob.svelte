@@ -470,7 +470,7 @@
       <div
         id="ground"
         class="obstacle ground"
-        style="width:100%; height:20px; bottom:10px;"
+        style="width:100%; height:20px; bottom:0px;"
       >
         ground
       </div>

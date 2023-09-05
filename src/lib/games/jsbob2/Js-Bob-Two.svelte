@@ -7,13 +7,25 @@
   let enemies: HTMLDivElement;
 
   let canvas: HTMLCanvasElement;
+  const viewWidth = 500;
+  const viewHeight = 500;
+  const levelWidth = 500;
+  const levelHeight = 500;
+  interface BasicObject {
+    y: number;
+    x: number;
+    w: number;
+    h: number;
+    id?: string;
+    hidden?: boolean;
+  }
 
-  interface LevelDataObject {
-    type: 'player' | 'ground' | 'block' | 'platform';
+  interface LevelDataObject extends BasicObject {
+    type: 'player' | 'ground' | 'block' | 'platform' | 'wall' | 'enemy';
     x: number;
     y: number;
-    w?: number;
-    h?: number;
+    w: number;
+    h: number;
     xv?: number;
     yv?: number;
   }
@@ -22,60 +34,99 @@
     objects: LevelDataObject[];
   }
 
-  const levelData: LevelData = {
+  let levelData: LevelData = {
     objects: [
       {
         type: 'player',
         x: 40,
-        y: 20,
+        y: 50,
+        w: 10,
+        h: 40,
         xv: 0,
         yv: 0,
       },
       {
-        type: 'ground',
+        type: 'wall',
+        id: 'wall1',
         x: 0,
-        y: 10,
+        y: 0,
+        w: 10,
+        h: 500,
+      },
+      {
+        type: 'ground',
+        id: 'ground1',
+        x: 0,
+        y: 0,
         w: 500,
         h: 10,
       },
       {
         type: 'block',
+        id: 'block1',
         x: 180,
-        y: 20,
+        y: 10,
         w: 40,
         h: 70,
       },
       {
         type: 'block',
+        id: 'block2',
         x: 230,
-        y: 90,
+        y: 80,
         w: 40,
         h: 70,
       },
       {
         type: 'platform',
-        x: 220,
-        y: 130,
+        id: 'plat1',
+        x: 80,
+        y: 70,
         w: 100,
         h: 10,
       },
       {
         type: 'platform',
+        id: 'plat2',
         x: 220,
-        y: 130,
+        y: 120,
         w: 100,
+        h: 10,
+      },
+      {
+        type: 'platform',
+        id: 'plat3',
+        x: 220,
+        y: 120,
+        w: 100,
+        h: 10,
+      },
+      {
+        type: 'platform',
+        id: 'plat4',
+        x: 20,
+        y: 10,
+        w: 10,
+        h: 95,
+      },
+      {
+        type: 'platform',
+        id: 'plat5',
+        x: 80,
+        y: 180,
+        w: 50,
+        h: 10,
+      },
+      {
+        type: 'platform',
+        id: 'plat6',
+        x: 450,
+        y: 210,
+        w: 25,
         h: 10,
       },
     ],
   };
-
-  interface BasicObject {
-    y: number;
-    x: number;
-    width: number;
-    height: number;
-    hidden?: boolean;
-  }
 
   interface Enemy extends BasicObject {
     id: string;
@@ -90,22 +141,32 @@
     id?: string;
   }
 
-  const viewWidth = 500;
-  const viewHeight = 500;
+  // todo remove after updating leveldata
+  levelData.objects = levelData.objects.map((object) => ({
+    ...object,
+    y: object.y * -1 + levelHeight - 10,
+  }));
 
   // This code is absolutely horrible. Do not copy except for a giggle.
 
   onMount(() => {
     if (browser) {
+      const playerData = levelData.objects.find(
+        (object) => object.type === 'player'
+      );
+      const platformData = levelData.objects.filter((object) =>
+        ['ground', 'platform', 'block', 'wall'].includes(object.type)
+      );
+      const enemyData = levelData.objects.filter(
+        (object) => object.type === 'enemy'
+      );
+
       canvas.height = viewHeight;
       canvas.width = viewWidth;
 
       console.log(canvas);
       const ctx = canvas.getContext('2d', { alpha: true });
 
-      const levelComp = window.getComputedStyle(level);
-      const levelWidth = parseInt(levelComp.width);
-      const levelHeight = parseInt(levelComp.height);
       const deathDisplay = document.getElementById('deathCount');
       const fps = document.getElementById('fpsCount');
 
@@ -113,11 +174,11 @@
 
       const playerStart: MovingObject = {
         x: 40,
-        y: 20,
+        y: 50,
         xv: 0,
         yv: 0,
-        width: 10,
-        height: 40,
+        w: 10,
+        h: 40,
       };
 
       let player: Player = {
@@ -142,95 +203,36 @@
 
       const objectsCollide = (a: BasicObject, b: BasicObject) =>
         !(
-          a.y + a.height < b.y ||
-          a.y > b.y + b.height ||
-          a.x + a.width < b.x ||
-          a.x > b.x + b.width
+          a.y + a.h < b.y ||
+          a.y > b.y + b.h ||
+          a.x + a.w < b.x ||
+          a.x > b.x + b.w
         );
 
-      playerModel.style.height = player.height + 'px';
-      playerModel.style.width = player.width + 'px';
+      let numOfEnemy = 20;
 
-      const hair = document.getElementById('hair');
-
-      const setPlayerLocation = (x: number, y: number) => {
-        playerModel.style.left = x + 'px';
-        playerModel.style.bottom = y + 'px';
-      };
-      setPlayerLocation(player.x, player.y);
-
-      let numOfEnemy = 50;
-
-      let enemyBuildString = '';
       while (numOfEnemy--) {
-        enemyBuildString +=
-          '<span class="enemy spinLeft" style="left:' +
-          parseInt(Math.random() * (levelWidth - 60) + 60) +
-          'px; bottom:' +
-          parseInt(Math.random() * levelHeight) +
-          'px;"></span>';
+        enemyData.push({
+          type: 'enemy',
+          x: Math.random() * (levelWidth - 60) + 60,
+          y: Math.random() * levelHeight,
+          h: 10,
+          w: 10,
+        });
       }
-      enemies.innerHTML = enemyBuildString;
-      // level.innerHTML += enemyBuildString;
-
-      const enemyList: Enemy[] = Array.from(
-        level.getElementsByClassName('enemy')
-      ).map((enemyEl): Enemy => {
-        const enemyDiv: HTMLElement = enemyEl as HTMLElement;
-        const enemyComp = window.getComputedStyle(enemyDiv as HTMLElement);
-
-        return {
-          id: enemyDiv.id,
-          width: parseInt(enemyComp.width) || 0,
-          height: parseInt(enemyComp.height) || 0,
-          x:
-            parseInt(enemyComp.left) ||
-            parseInt(levelComp.width) -
-              parseInt(enemyComp.right) -
-              (parseInt(enemyComp.width) || 0) ||
-            0,
-          y: parseInt(enemyComp.bottom) || 0,
-        } as Enemy;
-      });
 
       const playerCollidedWithEnemy = () =>
-        enemyList.some((enemy) => objectsCollide(player, enemy));
+        enemyData.some((enemy) => objectsCollide(player, enemy));
 
-      const createCollisionTree = () => {
-        var divs = Array.from(level.getElementsByTagName('div')).filter(
-            (div) => div.id !== 'player'
-          ),
-          i,
-          tree = [],
-          divComp;
-
-        for (i = 0; i < divs.length; i++) {
-          divComp = window.getComputedStyle(divs[i]);
-          tree.push({
-            id: divs[i].id,
-            x:
-              parseInt(divComp.left) ||
-              parseInt(levelComp.width) -
-                parseInt(divComp.right) -
-                (parseInt(divComp.width) || 0) ||
-              0,
-            y: parseInt(divComp.bottom) || 0,
-            width: parseInt(divComp.width) || 0,
-            height: parseInt(divComp.height) || 0,
-          });
-        }
-        return tree;
-      };
-
-      const colTree = createCollisionTree();
+      const colTree = platformData.concat(enemyData);
 
       const verCollide = () => {
         var i,
           ct = colTree,
           pLeft = player.x,
-          pRight = player.x + player.width,
+          pRight = player.x + player.w,
           pBot = player.y,
-          pTop = pBot + player.height,
+          pTop = pBot + player.h,
           objLeft,
           objRight,
           objBottom,
@@ -238,12 +240,12 @@
 
         for (i = 0; i < ct.length; i++) {
           objBottom = ct[i].y;
-          objTop = objBottom + ct[i].height;
+          objTop = objBottom + ct[i].h;
 
           //Within vertical
           if (pBot < objTop && pTop > objBottom) {
             objLeft = ct[i].x;
-            objRight = objLeft + ct[i].width;
+            objRight = objLeft + ct[i].w;
 
             //Left collide
             if (
@@ -260,7 +262,7 @@
               pRight > objLeft &&
               pRight < objLeft + overlap
             ) {
-              return objLeft - player.width;
+              return objLeft - player.w;
             }
           }
         }
@@ -270,9 +272,9 @@
         var i,
           ct = colTree,
           pLeft = player.x,
-          pRight = player.x + player.width,
+          pRight = player.x + player.w,
           pBot = player.y,
-          pTop = pBot + player.height,
+          pTop = pBot + player.h,
           objLeft,
           objRight,
           objBottom,
@@ -280,12 +282,12 @@
 
         for (i = 0; i < ct.length; i++) {
           objLeft = ct[i].x;
-          objRight = objLeft + ct[i].width;
+          objRight = objLeft + ct[i].w;
 
           //within horizontal
           if (pLeft < objRight && pRight > objLeft) {
             objBottom = ct[i].y;
-            objTop = objBottom + ct[i].height;
+            objTop = objBottom + ct[i].h;
 
             //bottom collide
             if (player.yv < 0 && pBot < objTop && pBot > objTop - overlap * 2) {
@@ -300,7 +302,7 @@
               pTop > objBottom &&
               pTop < objBottom + overlap
             ) {
-              return objBottom - player.height;
+              return objBottom - player.h;
             }
           }
         }
@@ -311,20 +313,8 @@
       const tick = () => {
         var verTestX, verTestY, wasDown;
 
-        //Hide the help on first move
-        if (helpShow) {
-          if (action.right || action.left || action.jump) {
-            helpShow = false;
-            const helpEl = document.getElementById('help1Show');
-            if (helpEl) {
-              helpEl.style.opacity = '0';
-            }
-          }
-        }
-
-        if (!dead && playerModel) {
+        if (!dead) {
           if (playerCollidedWithEnemy()) {
-            playerModel.classList.add('death');
             player.xv = 0;
             player.yv = 0;
             deaths++;
@@ -332,27 +322,27 @@
 
             setTimeout(function () {
               player = { ...player, ...playerStart };
-              playerModel.classList.remove('death');
+              //dead
               setTimeout(function () {
-                playerModel.classList.add('respawn');
+                //respawn
               }, 25);
               setTimeout(function () {
-                playerModel.classList.remove('respawn');
+                //respawn end
                 dead = false;
-              }, 1025);
-            }, 1000);
+              }, 25);
+            }, 500);
           }
 
           if (player.yv !== 0) {
             verTestY = horCollide();
             if (verTestY) {
-              wasDown = player.yv < 0;
+              wasDown = player.yv > 0;
               player.yv = 0;
               player.y = verTestY;
-
+              console.log(wasDown, player.yv);
               //was down?
               if (action.jump && wasDown) {
-                player.yv = 5.25;
+                player.yv = -5.25;
               }
 
               if (!action.right && !action.left) player.xv *= 0.6;
@@ -384,20 +374,20 @@
     				}*/
           }
 
-          if (!verTestY && player.yv > -9.5) {
-            player.yv -= 0.15;
+          if (!verTestY && player.yv < 9.5) {
+            player.yv += 0.15;
           }
 
-          if (player.xv > 0) {
-            if (hair) {
-              hair.style.left = '0';
-            }
-          }
-          if (player.xv < 0) {
-            if (hair) {
-              hair.style.left = '8px';
-            }
-          }
+          // if (player.xv > 0) {
+          //   if (hair) {
+          //     hair.style.left = '0';
+          //   }
+          // }
+          // if (player.xv < 0) {
+          //   if (hair) {
+          //     hair.style.left = '8px';
+          //   }
+          // }
 
           player.y += player.yv;
           player.x += player.xv;
@@ -411,33 +401,35 @@
         var newTime;
 
         //Update player position
-        setPlayerLocation(player.x, player.y);
+        // player.x = playerData?.x ?? 0;
+        // player.y = playerData?.y ?? 0;
+        // setPlayerLocation(player.x, player.y);
         // playerModel.style.left = player.x + 'px';
         // playerModel.style.bottom = player.y + 'px';
 
         //Update view position
         //level.style.left = -1 * (player.x - 115) + 'px';
         //level.style.bottom = (-1 * player.y + 80) + 'px';
-        var xDif =
-          parseInt(level?.style.left) - parseInt(-1 * (player.x - 115));
-        var yDif =
-          parseInt(level?.style.bottom) - parseInt(-1 * (player.y - 80));
+        // var xDif =
+        //   parseInt(level?.style.left) - (-1 * (player.x - 115));
+        // var yDif =
+        //   parseInt(level?.style.bottom) - (-1 * (player.y - 80));
 
-        if (xDif > 10) {
-          level.style.left = parseInt(level.style.left) - 10 + 'px';
-        } else if (xDif < -10) {
-          level.style.left = parseInt(level.style.left) + 10 + 'px';
-        } else {
-          level.style.left = -1 * (player.x - 115) + 'px';
-        }
+        // if (xDif > 10) {
+        //   level.style.left = parseInt(level.style.left) - 10 + 'px';
+        // } else if (xDif < -10) {
+        //   level.style.left = parseInt(level.style.left) + 10 + 'px';
+        // } else {
+        //   level.style.left = -1 * (player.x - 115) + 'px';
+        // }
 
-        if (yDif > 15) {
-          level.style.bottom = parseInt(level.style.bottom) - 10 + 'px';
-        } else if (yDif < -15) {
-          level.style.bottom = parseInt(level.style.bottom) + 10 + 'px';
-        } else {
-          level.style.bottom = -1 * (player.y - 80) + 'px';
-        }
+        // if (yDif > 15) {
+        //   level.style.bottom = parseInt(level.style.bottom) - 10 + 'px';
+        // } else if (yDif < -15) {
+        //   level.style.bottom = parseInt(level.style.bottom) + 10 + 'px';
+        // } else {
+        //   level.style.bottom = -1 * (player.y - 80) + 'px';
+        // }
 
         if (ctx) {
           ctx.globalCompositeOperation = 'destination-over';
@@ -448,17 +440,35 @@
           ctx.save();
           ctx.translate(player.x, player.y);
           ctx.fillStyle = 'rgba(0, 0, 255, 1.0)';
-          ctx.fillRect(0, 0, player.width, player.height);
+          ctx.fillRect(0, 0, player.w, player.h);
           ctx.restore();
 
           //ground
           ctx.save();
-          levelData.objects
-            .filter((object) => object.type === 'ground')
-            .forEach((ground) => {
-              ctx.fillStyle = 'rgba(200, 200, 200, 1.0)';
-              ctx.fillRect(ground.x, ground.y, ground.w ?? 0, ground.h ?? 0);
-            });
+          platformData.forEach((platform) => {
+            ctx.fillStyle = 'rgba(100, 100, 100, 1.0)';
+            if (platform.id) {
+              ctx.fillText(platform.id, platform.x + 2, platform.y + 8);
+            }
+
+            ctx.fillStyle = 'rgba(230, 230, 230, 1.0)';
+            ctx.fillRect(
+              platform.x,
+              platform.y,
+              platform.w ?? 0,
+              platform.h ?? 0
+            );
+          });
+          ctx.restore();
+
+          //enemies
+          ctx.save();
+          ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+          enemyData.forEach((enemy) => {
+            ctx.save();
+            ctx.fillRect(enemy.x, enemy.y, enemy.w, enemy.h);
+            ctx.restore();
+          });
           ctx.restore();
 
           ctx.restore();
@@ -487,17 +497,6 @@
       const init = function () {
         player = { ...player, ...playerStart };
 
-        level.style.left = -1 * (player.x - 115) + 'px';
-        level.style.bottom = -1 * player.y + 80 + 'px';
-
-        // colTree = createCollisionTree();
-
-        const help1ShowEl = document.getElementById('help1Show');
-        if (help1ShowEl) {
-          help1ShowEl.style.left = player.x - 30 + 'px';
-          help1ShowEl.style.bottom = player.y + 30 + 'px';
-        }
-
         document.addEventListener('keydown', function (evt) {
           action[key[evt.keyCode]] = true;
         });
@@ -515,82 +514,6 @@
 </script>
 
 <canvas bind:this={canvas} />
-
-<div id="jsBob">
-  <div id="view">
-    <div id="level" bind:this={level}>
-      <div id="player" bind:this={playerModel}>
-        <div id="head"><div id="hair" /></div>
-        <div id="body" />
-        <div id="leg" />
-      </div>
-      <div bind:this={enemies} />
-      <div
-        id="plat1"
-        class="obstacle platform"
-        style="left: 80px; bottom: 80px;"
-      >
-        plat1
-      </div>
-      <div id="wall1" class="obstacle wall" style="left: 0px; bottom: 0px;">
-        wall1
-      </div>
-      <div id="wall2" class="obstacle wall" style="right: 0px; bottom: 0px;">
-        wall2
-      </div>
-      <div
-        id="block"
-        class="obstacle block"
-        style="width:40px; height:70px; left:180px; bottom:20px;"
-      >
-        block
-      </div>
-      <div
-        id="block2"
-        class="obstacle block"
-        style="width:40px; height:70px; left:230px; bottom:90px;"
-      >
-        block2
-      </div>
-      <div
-        id="plat2"
-        class="obstacle platform"
-        style="left: 220px; bottom: 130px;"
-      >
-        plat2
-      </div>
-      <div
-        id="block3"
-        class="obstacle block"
-        style="width:25px; height:10px; left:450px; bottom:220px;"
-      >
-        block3
-      </div>
-      <div
-        id="ground"
-        class="obstacle ground"
-        style="width:100%; height:20px; bottom:0px;"
-      >
-        ground
-      </div>
-      <div
-        id="block4"
-        class="obstacle wall"
-        style="width:10px; height:95px; left:20px; bottom:20px;"
-      />
-
-      <div
-        class="obstacle platform"
-        style="height:10px; width:50px; left:80px; bottom:190px;"
-      />
-
-      <span id="help1Show" class="speach">WASD to move!</span>
-    </div>
-
-    <div id="deathCount" />
-    <div id="fpsCount" />
-  </div>
-</div>
 
 <style lang="scss" global>
   @import './jsbob2.scss';
