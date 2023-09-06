@@ -39,7 +39,7 @@
       {
         type: 'player',
         x: 40,
-        y: 50,
+        y: 70,
         w: 10,
         h: 40,
         xv: 0,
@@ -146,6 +146,7 @@
     ...object,
     y: object.y * -1 + levelHeight - 10,
   }));
+  console.log(levelData);
 
   // This code is absolutely horrible. Do not copy except for a giggle.
 
@@ -173,12 +174,12 @@
       let deaths = 0;
 
       const playerStart: MovingObject = {
-        x: 40,
-        y: 50,
-        xv: 0,
-        yv: 0,
-        w: 10,
-        h: 40,
+        x: playerData?.x ?? 40,
+        y: playerData?.y ?? 50,
+        xv: playerData?.xv ?? 0,
+        yv: playerData?.yv ?? 0,
+        w: playerData?.w ?? 10,
+        h: playerData?.h ?? 40,
       };
 
       let player: Player = {
