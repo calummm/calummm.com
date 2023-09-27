@@ -6,6 +6,7 @@ published: '2023-08-30'
 category: 'Coding'
 visible: true
 tags:
+  - game
   - webdev
 description: A simple game I made using javascript when I should have being paying attention in a Java course. Atwood's Law eh.
 image: jsbob

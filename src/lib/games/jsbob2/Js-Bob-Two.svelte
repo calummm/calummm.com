@@ -375,7 +375,7 @@
     				}*/
           }
 
-          if (!verTestY && player.yv < 9.5) {
+          if (!verTestY && player.yv < 5) {
             player.yv += 0.15;
           }
 
