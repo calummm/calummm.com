@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+  y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+  <circle fill="currentColor" cx="8" cy="24" r="3" />
+  <path fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
+    d="M20,27h-4c0-6.07-4.93-11-11-11v-4C13.28,12,20,18.72,20,27z" />
+  <path fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
+    d="M27,27h-4c0-9.93-8.07-18-18-18V5C17.15,5,27,14.85,27,27z" />
+</svg>
