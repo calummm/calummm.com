@@ -22,8 +22,8 @@
   }
 
   const player: Player = {
-    x: 250,
-    y: 250,
+    x: levelWidth / 2,
+    y: levelHeight / 2,
     rot: 0,
     xv: 0,
     yv: 0,
@@ -32,6 +32,8 @@
   };
 
   const power = 0.05;
+  const respawnTime = 60 * 3;
+  let timeDead = 0;
   const clampV = 5;
 
   const action = {
@@ -53,27 +55,34 @@
   }
   let bullets: Bullet[] = [];
 
-  const rockSize = [8, 20, 30, 30];
+  const rockSize = [8, 20, 30, 40];
   const rockShape = [];
-  rockShape.push(new Path2D());
+  // rockShape.push(new Path2D());
   interface Rock extends Obj {
     size: number;
     rotV: number;
   }
   let rocks: Rock[] = [];
-  let numberOfRocks = 5;
-  const createRock = (size: number): Rock => ({
+
+  const createRock = (size: number, speed = 2): Rock => ({
     x: Math.random() * levelWidth,
     y: Math.random() * levelHeight,
     rot: Math.random() * 360,
     rotV: Math.random() * 10,
     size,
-    xv: Math.random() * 2,
-    yv: Math.random() * 2,
+    xv: -speed + Math.random() * speed * 2,
+    yv: -speed + Math.random() * speed * 2,
   });
-  for (let i = 0; i < numberOfRocks; i++) {
-    rocks.push(createRock(Math.floor(Math.random() * rockSize.length)));
-  }
+
+  let currentLevel = 1;
+
+  const createLevel = (numberOfRocks: number) => {
+    for (let i = 0; i < numberOfRocks; i++) {
+      rocks.push(createRock(rockSize.length - 1));
+    }
+  };
+
+  createLevel(3);
 
   const clampToScreen = (obj: Obj, gutter = 5) => {
     if (obj.x > levelWidth + gutter) {
@@ -88,6 +97,9 @@
       obj.y = levelHeight + gutter;
     }
   };
+
+  const distanceBetweenObj = (obj1: Obj, obj2: Obj) =>
+    Math.sqrt(Math.pow(obj1.x - obj2.x, 2) + Math.pow(obj1.y - obj2.y, 2));
 
   onMount(() => {
     if (browser) {
@@ -115,49 +127,61 @@
       const tick = () => {
         if (ctx) {
           // Logic
-          if (action.left && !action.right) {
-            player.rot -= 3;
-          } else if (!action.left && action.right) {
-            player.rot += 3;
-          }
+          if (player.timeToRespawn) {
+            player.timeToRespawn -= 1;
 
-          const pRad = (player.rot * Math.PI) / 180;
+            if (player.timeToRespawn === 0) {
+              player.x = levelWidth / 2;
+              player.y = levelHeight / 2;
+              player.rot = 0;
+              player.xv = 0;
+              player.yv = 0;
+            }
+          } else {
+            if (action.left && !action.right) {
+              player.rot -= 3;
+            } else if (!action.left && action.right) {
+              player.rot += 3;
+            }
 
-          if (action.thrust) {
-            player.yv -= power * Math.cos(pRad);
-            player.xv += power * Math.sin(pRad);
-          }
+            const pRad = (player.rot * Math.PI) / 180;
 
-          if (player.yv > clampV) {
-            player.yv = clampV;
-          } else if (player.yv < -clampV) {
-            player.yv = -clampV;
-          }
-          if (player.xv > clampV) {
-            player.xv = clampV;
-          } else if (player.xv < -clampV) {
-            player.xv = -clampV;
-          }
+            if (action.thrust) {
+              player.yv -= power * Math.cos(pRad);
+              player.xv += power * Math.sin(pRad);
+            }
 
-          player.x += player.xv;
-          player.y += player.yv;
+            if (player.yv > clampV) {
+              player.yv = clampV;
+            } else if (player.yv < -clampV) {
+              player.yv = -clampV;
+            }
+            if (player.xv > clampV) {
+              player.xv = clampV;
+            } else if (player.xv < -clampV) {
+              player.xv = -clampV;
+            }
 
-          clampToScreen(player);
+            player.x += player.xv;
+            player.y += player.yv;
 
-          if (player.timeToReload) {
-            player.timeToReload -= 1;
-          }
-          if (action.shoot && player.timeToReload === 0) {
-            const bullet: Bullet = {
-              x: player.x,
-              y: player.y,
-              xv: player.xv + 10 * Math.sin(pRad),
-              yv: player.yv + 10 * -Math.cos(pRad),
-              rot: player.rot,
-              timeToLive: 60 * 1.2,
-            };
-            bullets.push(bullet);
-            player.timeToReload = 60 * 0.5;
+            clampToScreen(player);
+
+            if (player.timeToReload) {
+              player.timeToReload -= 1;
+            }
+            if (action.shoot && player.timeToReload === 0) {
+              const bullet: Bullet = {
+                x: player.x,
+                y: player.y,
+                xv: player.xv + 10 * Math.sin(pRad),
+                yv: player.yv + 10 * -Math.cos(pRad),
+                rot: player.rot,
+                timeToLive: 60 * 1.2,
+              };
+              bullets.push(bullet);
+              player.timeToReload = 60 * 0.5;
+            }
           }
 
           bullets = bullets.filter((bullet) => {
@@ -165,16 +189,50 @@
             bullet.y += bullet.yv;
             bullet.x += bullet.xv;
             clampToScreen(bullet);
-            return bullet.timeToLive;
+            return bullet.timeToLive > 0;
           });
 
-          rocks = rocks.filter((rock) => {
+          rocks.forEach((rock) => {
             rock.rot += rock.rotV;
             rock.x += rock.xv;
             rock.y += rock.yv;
             clampToScreen(rock);
-            return rock.size <= rockSize.length;
+
+            const collideWithBullet = bullets.find(
+              (bullet) => distanceBetweenObj(rock, bullet) < rockSize[rock.size]
+            );
+
+            if (collideWithBullet) {
+              rock.size -= 1;
+              const speed = 2;
+              rock.xv = -speed + Math.random() * speed * 2;
+              rock.yv = -speed + Math.random() * speed * 2;
+              const rockB = {
+                ...rock,
+                xv: -speed + Math.random() * speed * 2,
+                yv: -speed + Math.random() * speed * 2,
+              };
+              rocks.push(rockB);
+
+              collideWithBullet.timeToLive = 0;
+            }
+
+            const collideWithPlayer =
+              player.timeToRespawn === 0 &&
+              distanceBetweenObj(player, rock) < rockSize[rock.size] + 15;
+
+            if (collideWithPlayer) {
+              player.timeToRespawn = respawnTime;
+              timeDead = 0;
+            }
           });
+
+          rocks.filter((rock) => rock.size <= rockSize.length);
+
+          if (rocks.length <= 0) {
+            currentLevel += 1;
+            createLevel(3 + currentLevel);
+          }
 
           // Draw
           ctx.globalCompositeOperation = 'destination-over';
@@ -187,16 +245,26 @@
           ctx.rotate((player.rot * Math.PI) / 180);
           ctx.beginPath();
           ctx.strokeStyle = 'white';
+
+          const deathAnimation = (rot = 0.01) => {
+            if (player.timeToRespawn) {
+              ctx.rotate(rot * timeDead++);
+            }
+          };
+
+          deathAnimation();
           ctx.moveTo(+10, +15);
-
+          deathAnimation(-0.01);
           ctx.lineTo(-0, -15);
+          deathAnimation();
           ctx.lineTo(-10, +15);
-
+          deathAnimation(-0.01);
           ctx.moveTo(+8, +10);
+          deathAnimation(0.01);
           ctx.lineTo(-8, +10);
 
           // Draw Player engine
-          if (action.thrust) {
+          if (action.thrust && player.timeToRespawn === 0) {
             ctx.moveTo(+5, +10);
             ctx.lineTo(0, +18);
             ctx.lineTo(-5, +10);
