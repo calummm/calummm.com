@@ -53,6 +53,42 @@
   }
   let bullets: Bullet[] = [];
 
+  const rockSize = [8, 20, 30, 30];
+  const rockShape = [];
+  rockShape.push(new Path2D());
+  interface Rock extends Obj {
+    size: number;
+    rotV: number;
+  }
+  let rocks: Rock[] = [];
+  let numberOfRocks = 5;
+  const createRock = (size: number): Rock => ({
+    x: Math.random() * levelWidth,
+    y: Math.random() * levelHeight,
+    rot: Math.random() * 360,
+    rotV: Math.random() * 10,
+    size,
+    xv: Math.random() * 2,
+    yv: Math.random() * 2,
+  });
+  for (let i = 0; i < numberOfRocks; i++) {
+    rocks.push(createRock(Math.floor(Math.random() * rockSize.length)));
+  }
+
+  const clampToScreen = (obj: Obj, gutter = 5) => {
+    if (obj.x > levelWidth + gutter) {
+      obj.x = 0 - gutter;
+    } else if (obj.x < 0 - gutter) {
+      obj.x = levelWidth + gutter;
+    }
+
+    if (obj.y > levelHeight + gutter) {
+      obj.y = 0 - gutter;
+    } else if (obj.y < 0 - gutter) {
+      obj.y = levelHeight + gutter;
+    }
+  };
+
   onMount(() => {
     if (browser) {
       canvas.height = viewHeight;
@@ -74,20 +110,6 @@
         });
 
         tick();
-      };
-
-      const clampToScreen = (obj: Obj) => {
-        if (obj.x > levelWidth) {
-          obj.x = 0;
-        } else if (obj.x < 0) {
-          obj.x = levelWidth;
-        }
-
-        if (obj.y > levelHeight) {
-          obj.y = 0;
-        } else if (obj.y < 0) {
-          obj.y = levelHeight;
-        }
       };
 
       const tick = () => {
@@ -146,6 +168,14 @@
             return bullet.timeToLive;
           });
 
+          rocks = rocks.filter((rock) => {
+            rock.rot += rock.rotV;
+            rock.x += rock.xv;
+            rock.y += rock.yv;
+            clampToScreen(rock);
+            return rock.size <= rockSize.length;
+          });
+
           // Draw
           ctx.globalCompositeOperation = 'destination-over';
           ctx.clearRect(0, 0, viewWidth, viewHeight);
@@ -183,6 +213,17 @@
             ctx.beginPath();
             ctx.strokeStyle = 'white';
             ctx.arc(bullet.x, bullet.y, 3, 0, 2 * Math.PI, false);
+            ctx.stroke();
+            ctx.restore();
+          });
+
+          // Draw rocks
+          rocks.forEach((rock) => {
+            ctx.save();
+            ctx.translate(rock.x, rock.y);
+            ctx.beginPath();
+            ctx.strokeStyle = 'white';
+            ctx.arc(0, 0, rockSize[rock.size], 0, 2 * Math.PI, false);
             ctx.stroke();
             ctx.restore();
           });
