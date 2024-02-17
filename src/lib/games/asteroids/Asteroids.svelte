@@ -55,7 +55,7 @@
   }
   let bullets: Bullet[] = [];
 
-  const rockSize = [8, 20, 30, 40];
+  const rockSize = [10, 20, 30, 40];
   const rockShape = [];
   // rockShape.push(new Path2D());
   interface Rock extends Obj {
@@ -82,7 +82,7 @@
     }
   };
 
-  createLevel(3);
+  createLevel(2);
 
   const clampToScreen = (obj: Obj, gutter = 5) => {
     if (obj.x > levelWidth + gutter) {
@@ -105,6 +105,7 @@
     if (browser) {
       canvas.height = viewHeight;
       canvas.width = viewWidth;
+      canvas.focus();
 
       const ctx = canvas.getContext('2d', { alpha: true });
 
@@ -151,22 +152,6 @@
               player.xv += power * Math.sin(pRad);
             }
 
-            if (player.yv > clampV) {
-              player.yv = clampV;
-            } else if (player.yv < -clampV) {
-              player.yv = -clampV;
-            }
-            if (player.xv > clampV) {
-              player.xv = clampV;
-            } else if (player.xv < -clampV) {
-              player.xv = -clampV;
-            }
-
-            player.x += player.xv;
-            player.y += player.yv;
-
-            clampToScreen(player);
-
             if (player.timeToReload) {
               player.timeToReload -= 1;
             }
@@ -180,9 +165,25 @@
                 timeToLive: 60 * 1.2,
               };
               bullets.push(bullet);
-              player.timeToReload = 60 * 0.5;
+              player.timeToReload = 60 * 0.3;
             }
           }
+
+          if (player.yv > clampV) {
+            player.yv = clampV;
+          } else if (player.yv < -clampV) {
+            player.yv = -clampV;
+          }
+          if (player.xv > clampV) {
+            player.xv = clampV;
+          } else if (player.xv < -clampV) {
+            player.xv = -clampV;
+          }
+
+          player.x += player.xv;
+          player.y += player.yv;
+
+          clampToScreen(player);
 
           bullets = bullets.filter((bullet) => {
             bullet.timeToLive -= 1;
@@ -227,11 +228,11 @@
             }
           });
 
-          rocks.filter((rock) => rock.size <= rockSize.length);
+          rocks = rocks.filter((rock) => rock.size >= 0);
 
           if (rocks.length <= 0) {
             currentLevel += 1;
-            createLevel(3 + currentLevel);
+            createLevel(2 + currentLevel);
           }
 
           // Draw
@@ -248,19 +249,19 @@
 
           const deathAnimation = (rot = 0.01) => {
             if (player.timeToRespawn) {
-              ctx.rotate(rot * timeDead++);
+              ctx.translate(rot * timeDead, rot * timeDead);
+              timeDead++;
             }
           };
-
           deathAnimation();
           ctx.moveTo(+10, +15);
-          deathAnimation(-0.01);
+          deathAnimation();
           ctx.lineTo(-0, -15);
           deathAnimation();
           ctx.lineTo(-10, +15);
-          deathAnimation(-0.01);
+          deathAnimation();
           ctx.moveTo(+8, +10);
-          deathAnimation(0.01);
+          deathAnimation();
           ctx.lineTo(-8, +10);
 
           // Draw Player engine

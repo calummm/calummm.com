@@ -2,14 +2,14 @@
 title: asteroids
 subtitle:
 started: '2024-02-16'
-published: '2024-02-16'
+published: '2024-02-17'
 category: 'Coding'
-visible: false
+visible: true
 tags:
   - game
   - webdev
 description: A make of asteroids in javascript
-image: jsbob
+image: asteroids
 ---
 
 A canvas based adaptation of the classic Asteroids
