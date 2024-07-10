@@ -16,7 +16,7 @@ A simple game I made using javascript when I should have being paying attention 
 
 The entire game runs on the dom so in theory this could be inject onto any site with a bit of tweaking.
 
-<script lang="ts">
+<script>
   import JsBob from '$lib/games/jsbob/Js-Bob.svelte';
 </script>
 

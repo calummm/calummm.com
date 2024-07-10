@@ -14,7 +14,7 @@ image: asteroids
 
 A canvas based adaptation of the classic Asteroids
 
-<script lang="ts">
+<script>
   import Asteroids from '$lib/games/asteroids/Asteroids.svelte';
 </script>
 

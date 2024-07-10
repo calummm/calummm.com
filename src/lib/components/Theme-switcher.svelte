@@ -1,6 +1,6 @@
-<script lang="ts">
-  import SunLogo from '$lib/icons/sun-icon.svg?component';
+<script>
   import MoonLogo from '$lib/icons/moon-icon.svg?component';
+  import SunLogo from '$lib/icons/sun-icon.svg?component';
   import { theme } from '$lib/utils/theme';
 
   $: isDarkMode = $theme === 'dark';

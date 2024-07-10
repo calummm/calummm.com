@@ -1,9 +1,9 @@
-<script lang="ts">
+<script>
   import PostCard from '$lib/components/Post-Card.svelte';
 
-  import type { Post } from '$lib/model.js';
+  // import type { Post } from '$lib/model.js';
 
-  export let data: { category: string; posts: Post[] };
+  export let data; //: { category: string; posts: Post[] };
 </script>
 
 <article class="md:container md:mx-auto p-2">

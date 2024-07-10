@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import RssIcon from '$lib/icons/rss-icon.svg?component';
 </script>
 

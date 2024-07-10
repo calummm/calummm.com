@@ -14,7 +14,7 @@ image: jsbob
 
 This time in canvas
 
-<script lang="ts">
+<script>
   import JsBobTwo from '$lib/games/jsbob2/Js-Bob-Two.svelte';
 </script>
 

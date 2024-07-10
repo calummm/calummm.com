@@ -1,5 +1,5 @@
-<script lang="ts">
-  import Rss from './Rss.svelte';
+<script>
+  import Rss from '$lib/components/Rss.svelte';
   import ThemeSwitcher from './Theme-switcher.svelte';
 </script>
 

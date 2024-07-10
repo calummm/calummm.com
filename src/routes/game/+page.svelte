@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import JsBob from '$lib/games/jsbob/Js-Bob.svelte';
 </script>
 

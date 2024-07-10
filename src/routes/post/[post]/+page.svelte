@@ -1,9 +1,10 @@
-<script lang="ts">
+<script>
   import TagBubble from '$lib/components/Tag-bubble.svelte';
-  import type { BlogData } from '$lib/model';
+  // import type { BlogData } from '$lib/model';
   import Giscus from '@giscus/svelte';
 
-  export let data: BlogData & { content: any };
+  // export let data: BlogData & { content: any };
+  export let data;
 </script>
 
 <svelte:head>
