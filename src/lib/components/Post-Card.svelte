@@ -1,8 +1,8 @@
-<script lang="ts">
-  import type { Post } from '$lib/model';
+<script>
+  // import type { Post } from '$lib/model';
   // import splash from '$lib/assets/images/splash.png';
 
-  export let post: Post;
+  export let post; //: Post;
 
   let imageName = `/images/posts/${post.meta.image || 'splash-thumb'}`;
 </script>

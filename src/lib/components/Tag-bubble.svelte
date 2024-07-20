@@ -1,8 +1,8 @@
-<script lang="ts">
-  import { tagList, type Tag } from '$lib/utils/tags';
+<script>
+  import { tagList } from '$lib/utils/tags';
 
-  export let tagName: string;
-  export let tag: Tag | null = null;
+  export let tagName; //: string;
+  export let tag; //: Tag | null = null;
 
   if (tagName && !tag) {
     tag = {
