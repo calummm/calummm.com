@@ -1,25 +1,40 @@
 ---
-title: This is my first post.
-description: This is a post on My Blog about agile frameworks.
-date: 2018-05-01
-tags: another tag
+title: The First Post
+subtitle: The plan to build this website
+started: 2023-02-20
+date: 2023-02-20
+updated: 2023-03-08
+category: Coding
+tags:
+  - Ongoing
+  - webdev
+  - sveltekit
+  - Blog
+  - Building this site
+description: So I want to make a website. It will be an assortment of my ideas, projects and my personal journey. Wish me luck.
+image: first-post
 ---
-Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
 
-Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
+Hello. My name is Calum.
 
-## Section Header
+This is obviously the first post in what I hope will become a decent-sized blog. I hope by committing to attempting to, hopefully, have at least one commit per day to Github, this will encourage me to be more consistent. said every dev ever. Wish me luck.
 
-Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.
+## What this, or any blog, needs
 
-```diff-js
- // this is a command
- function myCommand() {
-+  let counter = 0;
--  let counter = 1;
-   counter++;
- }
+- [Framework](#framework)
+- [Organised structure](#organised-structure)
+- [Style system](#style-system)
+- [Consistent Coding patterns](#consistent-coding-patterns)
 
- // Test with a line break above this line.
- console.log('Test');
-```
+## Framework
+
+Professionally, I work with Angular and have been a big proponent of using it as my team is large and the opinionated nature of Angular worked well to provide that quality outcome. However, it is time to try something new in my personal coding adventures and Svelte and Sveltekit caught my eye. Here is a library (platform?) that promised a clean, intuitive and quick approach to what has historically been a complicated process.
+
+Firing up Sveltekit for the first time I was a little confused. The whole dev compile time amounted to less than 10 seconds. That cannot be right, I thought, coming from empty Angular projects taking upwards of 30 seconds and some mature projects taking as many as 20 minutes to compile for production.
+
+There are a lot of good articles out there on how to make blogs with libraries and tools such as Gatsby and the like. I wanted more control and wanted to practice a new framework so I decided on Sveltekit.
+
+There are a lot of good articles already for creating blogs with Sveltekit such as :
+
+- https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog
+- https://www.joshwcomeau.com/

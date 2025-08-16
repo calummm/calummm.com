@@ -217,12 +217,15 @@ header {
 	align-items: center;
 	padding: 1em;
 }
-.home-link {
+#home-link {
 	flex-grow: 1;
-	font-size: 1em; /* 16px /16 */
+	font-size: 1.5em; /* 16px /16 */
 	font-weight: 700;
 }
-.home-link:link:not(:hover) {
+#home-link {
+	color: var(--color-front);
+}
+#home-link:link:not(:hover) {
 	text-decoration: none;
 }
 
@@ -237,11 +240,18 @@ header {
 .nav-item {
 	display: inline-block;
 }
+.nav-item a[href] {
+	color: var(--color-front);
+	padding: 2px 0;
+}
 .nav-item a[href]:not(:hover) {
 	text-decoration: none;
 }
 .nav a[href][aria-current='page'] {
-	text-decoration: underline;
+	border-bottom: 2px solid var(--color-front);
+}
+.nav a[href][aria-current='page']:hover {
+	text-decoration: none;
 }
 
 /* Posts list */
