@@ -1,36 +1,62 @@
 {
-  "name": "calummm.com",
-  "version": "0.0.1",
-  "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy",
-    "lint": "prettier --check --plugin-search-dir=. . && eslint .",
-    "format": "prettier --write --plugin-search-dir=. .",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged"
-  },
-  "dependencies": {
-    "@11ty/eleventy": "^3.1.2"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-svelte3": "^4.0.0",
-    "husky": "^8.0.3",
-    "jsdom": "^21.1.2",
-    "lint-staged": "^13.3.0",
-    "prettier": "^2.8.8",
-    "sass": "^1.77.7",
-    "tslib": "^2.6.3",
-    "typescript": "^5.5.3"
-  },
-  "type": "module",
-  "lint-staged": {
-    "*.{js,ts,html}": [
-      "eslint",
-      "prettier --write"
-    ]
-  }
+	"name": "calummm.com",
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"start": "eleventy --serve",
+		"build": "npx @11ty/eleventy",
+		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
+		"format": "prettier --write --plugin-search-dir=. .",
+		"prepare": "husky install",
+		"pre-commit": "lint-staged",
+		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
+		"debugstart": "cross-env DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
+		"benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/11ty/eleventy-base-blog.git"
+	},
+	"author": {
+		"name": "Calum Moir-Mattox",
+		"url": "https://calummm.com"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=24"
+	},
+	"homepage": "https://calummm.com",
+	"dependencies": {
+		"@zachleat/heading-anchors": "^1.0.3"
+	},
+	"devDependencies": {
+		"@11ty/eleventy": "^3.1.2",
+		"@11ty/eleventy-img": "^6.0.4",
+		"@11ty/eleventy-navigation": "^1.0.4",
+		"@11ty/eleventy-plugin-rss": "^2.0.4",
+		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
+		"cross-env": "^7.0.3",
+		"luxon": "^3.6.1",
+		"prismjs": "^1.30.0",
+		"zod": "^3.25.67",
+		"zod-validation-error": "^3.5.2",
+		"@typescript-eslint/eslint-plugin": "^5.62.0",
+		"@typescript-eslint/parser": "^5.62.0",
+		"eslint": "^8.57.0",
+		"eslint-config-prettier": "^8.10.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"husky": "^8.0.3",
+		"jsdom": "^21.1.2",
+		"lint-staged": "^13.3.0",
+		"prettier": "^2.8.8",
+		"sass": "^1.77.7",
+		"tslib": "^2.6.3",
+		"typescript": "^5.5.3"
+	},
+	"lint-staged": {
+		"*.{js,ts,html}": [
+			"eslint",
+			"prettier --write"
+		]
+	}
 }
