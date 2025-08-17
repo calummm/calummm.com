@@ -223,7 +223,7 @@ header {
 	font-weight: 700;
 }
 #home-link {
-	color: var(--color-front);
+	color: var(--text-color);
 }
 #home-link:link:not(:hover) {
 	text-decoration: none;
@@ -241,14 +241,14 @@ header {
 	display: inline-block;
 }
 .nav-item a[href] {
-	color: var(--color-front);
+	color: var(--text-color);
 	padding: 2px 0;
 }
 .nav-item a[href]:not(:hover) {
 	text-decoration: none;
 }
 .nav a[href][aria-current='page'] {
-	border-bottom: 2px solid var(--color-front);
+	border-bottom: 2px solid var(--text-color);
 }
 .nav a[href][aria-current='page']:hover {
 	text-decoration: none;
