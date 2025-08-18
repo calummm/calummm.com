@@ -46,8 +46,9 @@
 		--color-gray-90: var(--color-front);
 
 		--text-color-link: #1493fb;
-		--text-color-link-active: #6969f7;
-		--text-color-link-visited: #a6a6f8;
+		--text-color-link: #1493fb;
+		--text-color-link-active: #ff6500;
+		--text-color-link-visited: #6969f7;
 
 		--background-color: #222831;
 	}
@@ -69,12 +70,15 @@ body {
 	font-family: var(--font-family);
 	color: var(--text-color);
 	background-color: var(--background-color);
+	min-height: 100%;
 }
 html {
 	overflow-y: scroll;
 }
 body {
 	max-width: 40em;
+	display: flex;
+	flex-direction: column;
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -127,6 +131,7 @@ a[href]:visited {
 	color: var(--text-color-link-visited);
 }
 a[href]:hover,
+a[href]:focus-within,
 a[href]:active {
 	color: var(--text-color-link-active);
 }

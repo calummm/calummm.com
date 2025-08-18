@@ -4,31 +4,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
+    <link rel="icon" href="/favicon.ico" sizes="any"/>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
+    <meta name="theme-color" content="#4a4a4a"/>
     <meta name="description" content="{{ description or metadata.description }}">
-    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
-    {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}"> {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
     {#- <meta name="generator" content="{{ eleventy.generator }}"> #}
     {#-
-    		Plain-text bundles are provided via the `eleventy-plugin-bundle` plugin:
-    		1. CSS:
-    			* Add to a per-page bundle using `{% css %}{% endcss %}`
-    			* Retrieve bundle content using `{% getBundle "css" %}` or `{% getBundleFileUrl "css" %}`
-    		2. Or for JavaScript:
-    			* Add to a per-page bundle using `{% js %}{% endjs %}`
-    			* Retrieve via `{% getBundle "js" %}` or `{% getBundleFileUrl "js" %}`
-    		3. Learn more: https://github.com/11ty/eleventy-plugin-bundle
-    		#}
+            		Plain-text bundles are provided via the `eleventy-plugin-bundle` plugin:
+            		1. CSS:
+            			* Add to a per-page bundle using `{% css %}{% endcss %}`
+            			* Retrieve bundle content using `{% getBundle "css" %}` or `{% getBundleFileUrl "css" %}`
+            		2. Or for JavaScript:
+            			* Add to a per-page bundle using `{% js %}{% endjs %}`
+            			* Retrieve via `{% getBundle "js" %}` or `{% getBundleFileUrl "js" %}`
+            		3. Learn more: https://github.com/11ty/eleventy-plugin-bundle
+            		#}
     {#- Add CSS to the bundle #}<style>
   /* This is an arbitrary CSS string added to the bundle */</style>
-  {#- Add the contents of a file to the bundle #}<style>
+  {#- Add the contents of a file to the bundle #}
+    <style>
   {% include "css/index.css" %}</style>
   {#- Or you can add from node_modules #}
   {# <style>{% include "node_modules/something.css" %}</style> #}
-  {#- Render the CSS bundle using inlined CSS (for the fastest site performance in production) #}<style>
+  {#- Render the CSS bundle using inlined CSS (for the fastest site performance in production) #}
+    <style>
   {% getBundle "css" %}</style>
   {#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
   {#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
-  {#- Add the heading-anchors web component to the JavaScript bundle #}<script type="module"> {% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}</script>
+  {#- Add the heading-anchors web component to the JavaScript bundle #}
+    <script type="module"> {% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}</script>
 </head>
 <body>
   <a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
@@ -56,6 +63,9 @@
       <em>Built with
         <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a>
       </em>
+    </p>
+    <p>
+      I am Calum. I enjoy nerdy things but also human topics such as teaching and writing. I am definitely a human.
     </p>
   </footer>
   <!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->
