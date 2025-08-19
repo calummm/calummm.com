@@ -13,15 +13,15 @@
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}"> {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
     {#- <meta name="generator" content="{{ eleventy.generator }}"> #}
     {#-
-            		Plain-text bundles are provided via the `eleventy-plugin-bundle` plugin:
-            		1. CSS:
-            			* Add to a per-page bundle using `{% css %}{% endcss %}`
-            			* Retrieve bundle content using `{% getBundle "css" %}` or `{% getBundleFileUrl "css" %}`
-            		2. Or for JavaScript:
-            			* Add to a per-page bundle using `{% js %}{% endjs %}`
-            			* Retrieve via `{% getBundle "js" %}` or `{% getBundleFileUrl "js" %}`
-            		3. Learn more: https://github.com/11ty/eleventy-plugin-bundle
-            		#}
+                                    		Plain-text bundles are provided via the `eleventy-plugin-bundle` plugin:
+                                    		1. CSS:
+                                    			* Add to a per-page bundle using `{% css %}{% endcss %}`
+                                    			* Retrieve bundle content using `{% getBundle "css" %}` or `{% getBundleFileUrl "css" %}`
+                                    		2. Or for JavaScript:
+                                    			* Add to a per-page bundle using `{% js %}{% endjs %}`
+                                    			* Retrieve via `{% getBundle "js" %}` or `{% getBundleFileUrl "js" %}`
+                                    		3. Learn more: https://github.com/11ty/eleventy-plugin-bundle
+                                    		#}
     {#- Add CSS to the bundle #}<style>
   /* This is an arbitrary CSS string added to the bundle */</style>
   {#- Add the contents of a file to the bundle #}
@@ -41,6 +41,9 @@
   <a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
   <header>
     <a href="/" id="home-link">{{ metadata.title }}</a>
+    <label id="theme" for="light-theme">Theme</label>
+    <input
+    id="light-theme" type="checkbox"/>
     {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
     <nav>
       <h2 class="visually-hidden">Top level navigation menu</h2>
