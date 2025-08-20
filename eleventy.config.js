@@ -3,12 +3,25 @@ import {
 	IdAttributePlugin,
 	InputPathToUrlTransformPlugin,
 } from '@11ty/eleventy';
-import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
+import { eleventyImageTransformPlugin, Image } from '@11ty/eleventy-img';
 import pluginNavigation from '@11ty/eleventy-navigation';
 import { feedPlugin } from '@11ty/eleventy-plugin-rss';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 
 import pluginFilters from './_config/filters.js';
+
+async function svgShortCode(filename, width, height) {
+	let metadata = await new Image(`./_includes/assets/${filename}`, {
+		formats: ['svg'],
+		dryRun: true,
+		width,
+		height,
+		// widths: [32],
+		svgShortCircuit: true,
+	});
+	// console.log(metadata.getFileContents().toString());
+	return metadata.getFileContents().toString(); //metadata.svg[0].buffer.toString();
+}
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function (eleventyConfig) {
@@ -81,7 +94,8 @@ export default async function (eleventyConfig) {
 		metadata: {
 			language: 'en',
 			title: 'Calummm',
-			subtitle: 'This is a longer description about your blog.',
+			subtitle:
+				'I am Calum. I enjoy nerdy things but also human topics such as teaching and writing. I am definitely a human.',
 			base: 'https://calummm.com/',
 			author: {
 				name: 'Calum Moir-Mattox',
@@ -109,6 +123,8 @@ export default async function (eleventyConfig) {
 			animated: true,
 		},
 	});
+
+	eleventyConfig.addNunjucksAsyncShortcode('svgIcon', svgShortCode);
 
 	// Filters
 	eleventyConfig.addPlugin(pluginFilters);
