@@ -29,10 +29,10 @@
 }
 
 #theme-light {
-	display: none;
+	display: flex;
 }
 #theme-dark {
-	display: inline-block;
+	display: none;
 }
 #light-theme {
 	display: none;
@@ -41,7 +41,7 @@
 :has(#light-theme:checked) {
 	--color-gray-20: #e0e0e0;
 	--color-gray-50: #c0c0c0;
-	--color-gray-90: #333;
+	--color-gray-90: #3f3f44ff;
 
 	--text-color-link: #0a38ceff;
 	--text-color-link-active: #ff6500;
@@ -50,10 +50,10 @@
 	--background-color: #fff;
 
 	#theme-light {
-		display: inline-block;
+		display: none;
 	}
 	#theme-dark {
-		display: none;
+		display: flex;
 	}
 }
 
@@ -61,7 +61,7 @@
 	:root {
 		--color-gray-20: #e0e0e0;
 		--color-gray-50: #c0c0c0;
-		--color-gray-90: #333;
+		--color-gray-90: #3f3f44ff;
 
 		--text-color-link: #0a38ceff;
 		--text-color-link-active: #ff6500;
@@ -71,10 +71,10 @@
 	}
 
 	#theme-light {
-		display: inline-block;
+		display: none;
 	}
 	#theme-dark {
-		display: none;
+		display: flex;
 	}
 }
 
@@ -99,16 +99,17 @@ body {
 	font-family: var(--font-family);
 	color: var(--text-color);
 	background-color: var(--background-color);
-	min-height: 100%;
 	transition: background-color linear 150ms;
 }
 html {
 	overflow-y: scroll;
+	height: 100%;
 }
 body {
 	max-width: 40em;
 	display: flex;
 	flex-direction: column;
+	min-height: 100%;
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -194,6 +195,10 @@ header {
 	left: 1rem;
 	/* Ensure it is positioned on top of everything else when it is shown */
 	z-index: 999;
+}
+
+#main {
+	flex: 1;
 }
 
 .links-nextprev {

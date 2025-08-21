@@ -3,7 +3,7 @@ import {
 	IdAttributePlugin,
 	InputPathToUrlTransformPlugin,
 } from '@11ty/eleventy';
-import { eleventyImageTransformPlugin, Image } from '@11ty/eleventy-img';
+import Image, { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import pluginNavigation from '@11ty/eleventy-navigation';
 import { feedPlugin } from '@11ty/eleventy-plugin-rss';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
@@ -11,16 +11,20 @@ import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 import pluginFilters from './_config/filters.js';
 
 async function svgShortCode(filename, width, height) {
-	let metadata = await new Image(`./_includes/assets/${filename}`, {
+	let metadata = await Image(`./_includes/assets/${filename}`, {
 		formats: ['svg'],
 		dryRun: true,
-		width,
-		height,
-		// widths: [32],
-		svgShortCircuit: true,
+		widths: [width],
 	});
-	// console.log(metadata.getFileContents().toString());
-	return metadata.getFileContents().toString(); //metadata.svg[0].buffer.toString();
+
+	let svgString = metadata.svg[0].buffer.toString();
+	if (width != null || height != null) {
+		svgString = svgString
+			.replace(/\sheight=".+?"/, ` height="${height}px"`)
+			.replace(/\swidth=".+?"/, ` width="${width}px"`);
+	}
+
+	return svgString;
 }
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */

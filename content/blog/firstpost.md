@@ -36,5 +36,5 @@ There are a lot of good articles out there on how to make blogs with libraries a
 
 There are a lot of good articles already for creating blogs with Sveltekit such as :
 
-- https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog
-- https://www.joshwcomeau.com/
+- [https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog](https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog)
+- [https://www.joshwcomeau.com/](https://www.joshwcomeau.com/)
