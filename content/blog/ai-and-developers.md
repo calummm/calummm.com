@@ -1,0 +1,20 @@
+---
+title: The future of the Senior Developer in an AI world
+date: 2025-08-17
+category: Opinion
+visible: true
+tags:
+  - Opinion
+  - Development
+description: My thoughts on the future of the senior developer in an increasingly AI world
+---
+
+The rapid advancements in AI-powered developer tooling are undoubtedly profoundly altering the landscape of the software development world. From code completion and automated debugging assistants, all the way up to full agentic workflows, these tools promise increased efficiency and accelerated development times. However, beneath all the promises lies a profound threat to the natural progression of junior developers. Without the trials and tribulations of organic learning, not just the how, but the why, we risk AI stunting the growth of the junior developer and never becoming a true seasoned senior developer. The full ramifications of this upheaval will not be immediately felt, as the development of a senior developer typically takes five or more years for their skills and experience to mature.
+
+One of the most critical aspects of a junior developer's journey is the painstaking process of learning through struggle and failure. Debugging a complex issue, understanding the intricacies of a legacy codebase, or optimizing a performance bottleneck often requires hours of deep focus, trial and error, and a willingness to delve into the often horrible and convoluted legacy codebases. This spelunking adventure is not merely about fixing a bug, it is about building an intuitive understanding of a system, identifying its’ interdependencies, and developing a robust problem-solving mindset. AI tooling offers massive timesavings through shortcuts but leaves out crucial learning opportunities. If a junior developer can simply ask an AI to fix an error or generate a block of code, they may never develop the ability for independent diagnosis and the nuanced understanding that comes from confronting and overcoming genuine technical challenges.
+
+The path to becoming a subject matter expert (SME) in the development world requires extensive practical experience and learning how to learn in their particular domain. SME’s don’t just know how to do or to fix something, they know the far more intangible skill of the why. Why should this code be like this, what were the trade-offs involved, why does this seemingly nonsense code have a comment saying never to touch it. They have the deeper understanding required cultivated through years of working in the trenches. AI tooling abstracts away much of this complexity and provides the solution, and the dopamine, but could inadvertently prevent the junior developer from gaining crucial depth of knowledge. When all of the why has been obscured, the ability to investigate, innovate and truly understand a system may be lost. The ability to mentor future generations can become compromised.
+
+The potential long-term consequences could become significant. A generation of developers who have relied heavily on AI assistance during their learning journey may lack critical skills and ways of working that are indispensable for senior roles. They may lack the ability to trace issues through multiple layers of abstraction without immediate AI guidance. They may lack the skills necessary in Root Cause Analysis. And mostly, they may not have the appropriate skills to effectively guide and educate junior team members by drawing upon a wealth of personal experience and deep understanding that only comes from long exposure to looking at code.
+
+While AI coding assistants undoubtedly bring immediate benefits to productivity, we must be wary of the potential skills gaps that could arise in the next generation of developers. The industry will need to find a way to incorporate AI as a tool, rather than a replacement to fundamental learning. A balance will need to be found and ways of working will need to change. Mentorship, pair or mob programming, and a continued emphasis on understanding problems, rather than solutions will be crucial to ensure that the next generation of programmers mature into seasoned senior developers.

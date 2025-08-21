@@ -6,9 +6,7 @@ date: 2023-02-20
 updated: 2023-03-08
 category: Coding
 tags:
-  - Ongoing
   - webdev
-  - sveltekit
   - Blog
   - Building this site
 description: So I want to make a website. It will be an assortment of my ideas, projects and my personal journey. Wish me luck.
