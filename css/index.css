@@ -5,7 +5,7 @@
 		Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
 		Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
 		Courier, monospace;
-	--font-size: 17px;
+	--font-size: 20px;
 }
 
 /* Theme colors */
@@ -100,7 +100,7 @@ body {
 	font-family: var(--font-family);
 	color: var(--text-color);
 	background-color: var(--background-color);
-	transition: background-color linear 150ms;
+	/* transition: background-color linear 150ms; */
 }
 html {
 	overflow-y: scroll;
@@ -151,6 +151,7 @@ p:last-child {
 }
 p {
 	line-height: 1.5;
+	margin-bottom: 3rem;
 }
 
 li {
@@ -359,7 +360,10 @@ header {
 	gap: 0.5em;
 	list-style: none;
 	padding: 0;
-	margin: 0rem 0 1rem;
+	margin: 0rem 0 3rem;
+}
+.post-metadata li:first-child {
+	width: 100%;
 }
 .post-metadata time {
 	margin-right: 1em;
