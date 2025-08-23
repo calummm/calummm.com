@@ -11,11 +11,9 @@
     <meta name="theme-color" content="#4a4a4a"/>
     <meta name="description" content="{{ description or metadata.description }}">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
-    <meta name="generator" content="{{ eleventy.generator }}"> {% set js %}
-    {% include "theme.js" %}
-    {% endset %}
-    <script eleventy:ignore>
-      {{ js | jsmin | safe }}</script>
+    <meta name="generator" content="{{ eleventy.generator }}">
+    <script eleventy:ignore>{% include "pre.js" %}</script>
+    <script>{% include "theme.js" %}</script>
     <style>/* This is an arbitrary CSS string added to the bundle */</style>
   <style>
     {% include "css/index.css" %}</style>

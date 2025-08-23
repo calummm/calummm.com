@@ -39,7 +39,8 @@
 	display: none;
 }
 
-:has(#light-theme:checked) {
+:has(#light-theme:checked),
+html[data-theme='light'] {
 	--color-gray-20: #e0e0e0;
 	--color-gray-50: #c0c0c0;
 	--color-gray-90: #3f3f44ff;
