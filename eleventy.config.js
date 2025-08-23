@@ -8,6 +8,7 @@ import pluginNavigation from '@11ty/eleventy-navigation';
 import { feedPlugin } from '@11ty/eleventy-plugin-rss';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 
+import { minify } from 'terser';
 import pluginFilters from './_config/filters.js';
 
 async function svgShortCode(filename, width, height) {
@@ -141,6 +142,19 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addShortcode('currentBuildDate', () => {
 		return new Date().toISOString();
+	});
+
+	eleventyConfig.addFilter('jsmin', async function (code, callback) {
+		console.log(code, callback);
+		try {
+			const minified = await minify(code);
+			console.log(minified);
+			return callback ? callback(null, minified.code) : minified.code;
+		} catch (err) {
+			console.error('Terser error: ', err);
+			// Fail gracefully.
+			callback(null, code);
+		}
 	});
 
 	// Features to make your build faster (when you need them)
