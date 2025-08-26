@@ -7,8 +7,9 @@ tags:
   - webdev
 description: A simple game I made using javascript when I should have being paying attention in a Java course. Atwood's Law eh.
 image: jsbob
-draft: true
 ---
+
+<link rel="stylesheet" href="./jsBob.css">
 
 A simple game I made using javascript when I should have being paying attention in a Java course. Atwood's Law eh. It is crude and old but has some charm?
 
@@ -16,13 +17,13 @@ The entire game runs on the dom so in theory this could be inject onto any site 
 
 <div id="jsBob">
   <div id="view">
-    <div id="level" bind:this={level}>
-      <div id="player" bind:this={playerModel}>
-        <div id="head"><div id="hair" /></div>
-        <div id="body" />
-        <div id="leg" />
+    <div id="level" >
+      <div id="player" >
+        <div id="head"><div id="hair" ></div></div>
+        <div id="body" ></div>
+        <div id="leg" ></div>
       </div>
-      <div bind:this={enemies} />
+      <div id="enemies" ></div>
       <div
         id="plat1"
         class="obstacle platform"
@@ -75,18 +76,20 @@ The entire game runs on the dom so in theory this could be inject onto any site 
         id="block4"
         class="obstacle wall"
         style="width:10px; height:95px; left:20px; bottom:20px;"
-      />
+      ></div>
 
       <div
         class="obstacle platform"
         style="height:10px; width:50px; left:80px; bottom:190px;"
-      />
+      ></div>
 
       <span id="help1Show" class="speach">WASD to move!</span>
     </div>
 
-    <div id="deathCount" />
-    <div id="fpsCount" />
+    <div id="deathCount" ></div>
+    <div id="fpsCount" ></div>
 
   </div>
 </div>
+
+<script src="./jsBob.js"></script>

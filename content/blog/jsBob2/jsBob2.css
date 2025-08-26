@@ -1,0 +1,235 @@
+#jsBob {
+	width: 500px;
+	height: 500px;
+}
+#jsBob #view {
+	transform-origin: top left;
+	-moz-transform: scale(2);
+	-webkit-transform: scale(2);
+	transform: scale(2);
+	background: #666;
+	position: relative;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	width: 250px;
+	height: 250px;
+	border: grey 1px solid;
+}
+#jsBob #level {
+	position: absolute;
+	background: #eee;
+	width: 800px;
+	height: 500px;
+	border: 0px solid grey;
+}
+#jsBob #deathCount,
+#jsBob #fpsCount {
+	position: absolute;
+	top: 1px;
+	padding: 0 1px;
+	font-size: 10px;
+	background: white;
+	border: 1px solid #ccc;
+	color: black;
+}
+#jsBob #deathCount {
+	left: 1px;
+	color: black;
+}
+#jsBob #fpsCount {
+	min-width: 32px;
+	right: 1px;
+}
+#jsBob #player {
+	position: absolute;
+}
+#jsBob #hat {
+	height: 2px;
+	background: brown;
+}
+#jsBob #hair {
+	height: 7px;
+	width: 2px;
+	position: absolute;
+	top: 0;
+	left: 0px;
+	background: brown;
+}
+#jsBob #head {
+	height: 10px;
+	background: #eeceb3;
+	border-top: 2px solid brown;
+}
+#jsBob #body {
+	height: 11px;
+	background: blue;
+}
+#jsBob #leg {
+	height: 19px;
+	background: #333;
+}
+#jsBob .obstacle {
+	position: absolute;
+	background: #555;
+	font-size: 8px;
+	color: white;
+}
+#jsBob .platform {
+	height: 10px;
+	width: 100px;
+}
+#jsBob .wall {
+	width: 10px;
+	height: 100%;
+}
+#jsBob .block {
+	background: orange;
+	color: black;
+}
+#jsBob .stair {
+	width: 10px;
+	height: 10px;
+	background: orange;
+	color: white;
+}
+#jsBob .enemy {
+	position: absolute;
+	display: block;
+	background: red;
+	width: 10px;
+	height: 10px;
+}
+#jsBob .speach {
+	color: white;
+	position: absolute;
+	font-size: 8px;
+	padding: 5px 10px;
+	margin: 1em 0 3em;
+	background: #f3961c;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
+	background: -moz-linear-gradient(#2e88c4, #075698);
+	background: -o-linear-gradient(#2e88c4, #075698);
+	background: linear-gradient(#2e88c4, #075698);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	transition: opacity 0.25s linear;
+}
+#jsBob .speach:after {
+	content: '';
+	position: absolute;
+	top: 20px;
+	left: 28px;
+	border-width: 7px 7px 0;
+	border-style: solid;
+	border-color: #075698 transparent;
+	display: block;
+	width: 0;
+}
+#jsBob .spinRight {
+	-webkit-animation: spinR 0.5s linear infinite;
+	-moz-animation: spinR 0.5s linear infinite;
+	animation: spinR 0.5s linear infinite;
+}
+@-moz-keyframes spinR {
+	100% {
+		-moz-transform: rotate(360deg);
+	}
+}
+@-webkit-keyframes spinR {
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+@keyframes spinR {
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+#jsBob .spinLeft {
+	-webkit-animation: spinL 0.5s linear infinite;
+	-moz-animation: spinL 0.5s linear infinite;
+	animation: spinL 0.5s linear infinite;
+}
+@-moz-keyframes spinL {
+	100% {
+		-moz-transform: rotate(-360deg);
+	}
+}
+@-webkit-keyframes spinL {
+	100% {
+		-webkit-transform: rotate(-360deg);
+	}
+}
+@keyframes spinL {
+	100% {
+		-webkit-transform: rotate(-360deg);
+		transform: rotate(-360deg);
+	}
+}
+#jsBob .deathUp {
+	animation: dU 1.5s ease-out 1;
+}
+@-webkit-keyframes dU {
+	100% {
+		-webkit-transform: translate(0px, -150px) rotate(-1000deg) scale(0);
+	}
+}
+@keyframes dU {
+	100% {
+		transform: translate(0px, -150px) rotate(-1000deg) scale(0);
+	}
+}
+#jsBob .deathDownRight {
+	animation: ddr 1.5s ease-out 1;
+}
+@-webkit-keyframes ddr {
+	100% {
+		-webkit-transform: translate(150px, 150px) rotate(1000deg) scale(0);
+	}
+}
+@keyframes ddr {
+	100% {
+		transform: translate(150px, 150px) rotate(1000deg) scale(0);
+	}
+}
+#jsBob .deathDownLeft {
+	-webkit-animation: ddl 1.5s ease-out 1;
+	animation: ddl 1.5s ease-out 1;
+}
+@-webkit-keyframes ddl {
+	100% {
+		-webkit-transform: translate(-150px, 150px) rotate(-1000deg) scale(0);
+	}
+}
+@keyframes ddl {
+	100% {
+		transform: translate(-150px, 150px) rotate(-1000deg) scale(0);
+	}
+}
+#jsBob .death #body {
+	-webkit-animation: ddl 1s ease-out 1;
+	animation: ddl 1s ease-out 1;
+}
+#jsBob .death #head {
+	-webkit-animation: dU 1s ease-out 1;
+	animation: dU 1s ease-out 1;
+}
+#jsBob .death #leg {
+	-webkit-animation: ddr 1s ease-out 1;
+	animation: ddr 1s ease-out 1;
+}
+#jsBob .respawn #body {
+	-webkit-animation: ddl 1s ease-out 1 reverse;
+	animation: ddl 1s ease-out 1 reverse;
+}
+#jsBob .respawn #head {
+	-webkit-animation: dU 1s ease-out 1 reverse;
+	animation: dU 1s ease-out 1 reverse;
+}
+#jsBob .respawn #leg {
+	-webkit-animation: ddr 1s ease-out 1 reverse;
+	animation: ddr 1s ease-out 1 reverse;
+}

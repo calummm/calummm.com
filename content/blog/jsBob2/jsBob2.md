@@ -7,13 +7,12 @@ tags:
   - webdev
 description: A remake of jsbob, this time in canvas
 image: jsbob
-draft: true
 ---
+
+<link rel="stylesheet" href="./jsBob2.css">
 
 This time in canvas
 
-<!-- <script>
-  import JsBobTwo from '$lib/games/jsbob2/Js-Bob-Two.svelte';
-</script>
+<canvas id="jsBob2Canvas" ></canvas>
 
-<JsBobTwo /> -->
+<script src="./jsBob2.js"></script>

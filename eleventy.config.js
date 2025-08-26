@@ -49,13 +49,17 @@ export default async function (eleventyConfig) {
 		})
 		.addPassthroughCopy('./content/feed/pretty-atom-feed.xsl');
 
+	eleventyConfig.addPassthroughCopy('content/**/*.{js,css}');
+
 	// Run Eleventy when these files change:
 	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
 	// Watch CSS files
 	eleventyConfig.addWatchTarget('css/**/*.css');
 	// Watch images for the image pipeline.
-	eleventyConfig.addWatchTarget('content/**/*.{svg,webp,png,jpg,jpeg,gif}');
+	eleventyConfig.addWatchTarget(
+		'content/**/*.{svg,webp,png,jpg,jpeg,gif,js,css}'
+	);
 
 	// Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
 	// Bundle <style> content and adds a {% css %} paired shortcode
@@ -148,7 +152,6 @@ export default async function (eleventyConfig) {
 		console.log(code, callback);
 		try {
 			const minified = await minify(code);
-			console.log(minified);
 			return callback ? callback(null, minified.code) : minified.code;
 		} catch (err) {
 			console.error('Terser error: ', err);

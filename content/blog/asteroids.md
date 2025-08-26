@@ -14,7 +14,7 @@ image: asteroids
 
 A canvas based adaptation of the classic Asteroids
 
-<canvas id="asteroids-canvas" style="background:black" tabindex="0" />
+<canvas id="asteroids-canvas" style="background:black" tabindex="0"></canvas>
 
 <script>
 
