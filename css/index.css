@@ -166,7 +166,7 @@ a[href]:visited {
 	color: var(--text-color-link-visited);
 }
 a[href]:hover,
-a[href]:focus-within,
+a[href]:focus-visible,
 a[href]:active {
 	color: var(--text-color-link-active);
 }
@@ -177,6 +177,17 @@ footer {
 }
 main :first-child {
 	margin-top: 0;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	font-size: 16px;
+}
+
+footer p {
+	margin: 0;
 }
 
 header {
@@ -266,11 +277,28 @@ header {
 	font-size: 1.5em; /* 16px /16 */
 	font-weight: 700;
 }
-#home-link {
+body header a[href],
+body header a[href]:visited,
+body header label {
 	color: var(--text-color);
 }
+
+body header a[href]:hover,
+body header a[href]:focus-visible,
+body header a[href]:active,
+body header label:hover,
+body header label:focus-visible {
+	color: var(--text-color-link-active);
+}
+
 #home-link:link:not(:hover) {
 	text-decoration: none;
+}
+
+.coffee-link {
+	width: 32px;
+	height: 32px;
+	padding: 2px;
 }
 
 /* Nav */
