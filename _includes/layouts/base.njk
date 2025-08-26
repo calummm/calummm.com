@@ -26,14 +26,17 @@
 <body>
   <a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
   <header>
-    <a href="/" id="home-link">{{ metadata.title }}</a>
-    <a class="coffee-link" href="https://www.buymeacoffee.com/calummm" alt="Buy Me A Coffee" title="Buy Me A Coffee">{% svgIcon 'coffee.svg', 28, 28 %}</a>
-    <label id="theme" for="light-theme" tabindex="0">
-      <span id="theme-light">{% svgIcon 'sun-icon.svg', 32, 32 %}</span>
-      <span id="theme-dark">{% svgIcon 'moon-icon.svg', 32, 32 %}</span>
-    </label>
-    <input
-    id="light-theme" type="checkbox"/>
+    <div id="home-link">
+      <a href="/">{{ metadata.title }}</a>
+    </div>
+    <div id="quick-panel">
+      <a class="coffee-link" href="https://www.buymeacoffee.com/calummm" alt="Buy Me A Coffee" title="Buy Me A Coffee">{% svgIcon 'coffee.svg', 28, 28 %}</a>
+      <label id="theme" for="light-theme" tabindex="0">
+        <span id="theme-light">{% svgIcon 'sun-icon.svg', 32, 32 %}</span>
+        <span id="theme-dark">{% svgIcon 'moon-icon.svg', 32, 32 %}</span>
+      </label>
+      <input id="light-theme" type="checkbox"/>
+    </div>
     {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
     <nav>
       <h2 class="visually-hidden">Top level navigation menu</h2>
@@ -55,16 +58,16 @@
     <p>
       I am Calum. I enjoy nerdy things but also human topics such as teaching and writing. I am definitely a human.
     </p>
-    <a href="https://www.buymeacoffee.com/calummm" target="_blank"><img
-        src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-        alt="Buy Me A Coffee"
-        style="height: 60px !important;width: 217px !important;">
-    </a>
-    <p>
-      <em>Built with
+    <div class="footer-meta">
+      <a href="https://www.buymeacoffee.com/calummm" target="_blank"><img
+          src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+          alt="Buy Me A Coffee"
+          style="height: 60px !important;width: 217px !important;">
+      </a>
+      <em class="built-with">Built with
         <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a>
       </em>
-    </p>
+    </div>
   </footer>
   <!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->
   <script type="module" src="{% getBundleFileUrl "js" %}"></script>

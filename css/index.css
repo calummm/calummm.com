@@ -21,9 +21,9 @@
 	--color-gray-90: var(--color-front);
 
 	--text-color: var(--color-gray-90);
-	--text-color-link: #1f9affff;
+	--text-color-link: #66baff;
 	--text-color-link-active: #ff6500;
-	--text-color-link-visited: #8080ffff;
+	--text-color-link-visited: #acacff;
 	/* --text-color-link-visited: rebeccapurple; */
 
 	--background-color: #222831;
@@ -147,12 +147,17 @@ iframe {
 	aspect-ratio: 16/9;
 }
 
-p:last-child {
+p:last-child,
+ul:last-child {
 	margin-bottom: 0;
 }
-p {
+p,
+ul {
 	line-height: 1.5;
 	margin-bottom: 3rem;
+}
+p:has(+ ul) {
+	margin-bottom: 0;
 }
 
 li {
@@ -190,6 +195,17 @@ footer p {
 	margin: 0;
 }
 
+.footer-meta {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.built-with a {
+	white-space: nowrap;
+}
+
 header {
 	border-bottom: 1px dashed var(--color-gray-20);
 }
@@ -223,6 +239,7 @@ header {
 	list-style: '';
 	border-top: 1px dashed var(--color-gray-20);
 	padding: 1em 0;
+	margin-top: 3rem;
 }
 .links-nextprev > * {
 	flex-grow: 1;
@@ -275,7 +292,12 @@ header {
 #home-link {
 	flex-grow: 1;
 	font-size: 1.5em; /* 16px /16 */
+}
+#home-link a {
 	font-weight: 700;
+}
+#home-link a:not(:hover) {
+	text-decoration: none;
 }
 body header a[href],
 body header a[href]:visited,
@@ -293,6 +315,11 @@ body header label:focus-visible {
 
 #home-link:link:not(:hover) {
 	text-decoration: none;
+}
+
+#quick-panel {
+	display: flex;
+	gap: 1rem;
 }
 
 .coffee-link {
