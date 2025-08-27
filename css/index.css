@@ -178,7 +178,7 @@ a[href]:active {
 
 main,
 footer {
-	padding: 1rem;
+	padding: 1.5rem;
 }
 main :first-child {
 	margin-top: 0;
@@ -197,12 +197,13 @@ footer p {
 
 .footer-meta {
 	display: flex;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	align-items: center;
 	gap: 0.5rem;
 }
 
 .built-with a {
+	display: block;
 	white-space: nowrap;
 }
 
@@ -287,7 +288,7 @@ header {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1em;
+	padding: 1em 1.5rem;
 }
 #home-link {
 	flex-grow: 1;
@@ -423,4 +424,21 @@ body header label:focus-visible {
 }
 .post-metadata time {
 	margin-right: 1em;
+}
+
+.header-anchor[href] {
+	color: inherit;
+	position: relative;
+	/* display: inline-flex;
+	gap: 0.75rem; */
+}
+.header-anchor[href]:hover::after,
+.header-anchor[href]:focus::after {
+	display: inline-block;
+	content: '#';
+	position: absolute;
+	left: -1.25rem;
+}
+.header-anchor[href]:not(:hover, :focus) {
+	text-decoration: none;
 }

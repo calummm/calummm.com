@@ -1,13 +1,15 @@
-import {
-	HtmlBasePlugin,
-	IdAttributePlugin,
-	InputPathToUrlTransformPlugin,
-} from '@11ty/eleventy';
+import { HtmlBasePlugin, InputPathToUrlTransformPlugin } from '@11ty/eleventy';
 import Image, { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import pluginNavigation from '@11ty/eleventy-navigation';
 import { feedPlugin } from '@11ty/eleventy-plugin-rss';
 import pluginSyntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 
+import MarkdownIt from 'markdown-it';
+import {
+	default as anchor,
+	default as markdownItAnchor,
+} from 'markdown-it-anchor';
+import string from 'string';
 import { minify } from 'terser';
 import pluginFilters from './_config/filters.js';
 
@@ -138,11 +140,11 @@ export default async function (eleventyConfig) {
 	// Filters
 	eleventyConfig.addPlugin(pluginFilters);
 
-	eleventyConfig.addPlugin(IdAttributePlugin, {
-		// by default we use Eleventy’s built-in `slugify` filter:
-		// slugify: eleventyConfig.getFilter("slugify"),
-		// selector: "h1,h2,h3,h4,h5,h6", // default
-	});
+	// eleventyConfig.addPlugin(IdAttributePlugin, {
+	// 	// by default we use Eleventy’s built-in `slugify` filter:
+	// 	// slugify: eleventyConfig.getFilter("slugify"),
+	// 	// selector: "h1,h2,h3,h4,h5,h6", // default
+	// });
 
 	eleventyConfig.addShortcode('currentBuildDate', () => {
 		return new Date().toISOString();
@@ -159,6 +161,25 @@ export default async function (eleventyConfig) {
 			callback(null, code);
 		}
 	});
+
+	const slugify = (s) => string(s).slugify().toString();
+
+	const markdownItOptions = {
+		html: true,
+	};
+
+	// Options for the `markdown-it-anchor` library
+	const markdownItAnchorOptions = {
+		permalink: anchor.permalink.headerLink(),
+		slugify,
+	};
+
+	const markdownLib = MarkdownIt(markdownItOptions).use(
+		markdownItAnchor,
+		markdownItAnchorOptions
+	);
+
+	eleventyConfig.setLibrary('md', markdownLib);
 
 	// Features to make your build faster (when you need them)
 
