@@ -426,7 +426,8 @@ body header label:focus-visible {
 	margin-right: 1em;
 }
 
-.header-anchor[href] {
+.header-anchor[href],
+.header-anchor[href]:visited:not(:hover, :focus) {
 	color: inherit;
 	position: relative;
 	/* display: inline-flex;
@@ -438,6 +439,8 @@ body header label:focus-visible {
 	content: '#';
 	position: absolute;
 	left: -1.25rem;
+	top: 0.15em;
+	font-size: 0.85em;
 }
 .header-anchor[href]:not(:hover, :focus) {
 	text-decoration: none;
