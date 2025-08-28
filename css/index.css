@@ -229,6 +229,13 @@ header {
 	z-index: 999;
 }
 
+.content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
 #main {
 	flex: 1;
 }
@@ -444,4 +451,8 @@ body header label:focus-visible {
 }
 .header-anchor[href]:not(:hover, :focus) {
 	text-decoration: none;
+}
+
+article a[href] {
+	word-wrap: break-word;
 }

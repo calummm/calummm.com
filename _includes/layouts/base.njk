@@ -25,33 +25,35 @@
 </head>
 <body>
   <a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
-  <header>
-    <div id="home-link">
-      <a href="/">{{ metadata.title }}</a>
-    </div>
-    <div id="quick-panel">
-      <a class="coffee-link" href="https://www.buymeacoffee.com/calummm" alt="Buy Me A Coffee" title="Buy Me A Coffee">{% svgIcon 'coffee.svg', 28, 28 %}</a>
-      <label id="theme" for="light-theme" tabindex="0">
-        <span id="theme-light">{% svgIcon 'sun-icon.svg', 32, 32 %}</span>
-        <span id="theme-dark">{% svgIcon 'moon-icon.svg', 32, 32 %}</span>
-      </label>
-      <input id="light-theme" type="checkbox"/>
-    </div>
-    {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-    <nav>
-      <h2 class="visually-hidden">Top level navigation menu</h2>
-      <ul class="nav">
-        {%- for entry in collections.all | eleventyNavigation %}
-          <li class="nav-item">
-            <a href="{{ entry.url }}" {% if entry.url == page.url %} aria-current="page" {% endif %}>{{ entry.title }}</a>
-          </li>
-        {%- endfor %}
-      </ul>
-    </nav>
-  </header>
-  <main id="main">
-    {{ content | safe }}
-  </main>
+  <div class="content">
+    <header>
+      <div id="home-link">
+        <a href="/">{{ metadata.title }}</a>
+      </div>
+      <div id="quick-panel">
+        <a class="coffee-link" href="https://www.buymeacoffee.com/calummm" alt="Buy Me A Coffee" title="Buy Me A Coffee">{% svgIcon 'coffee.svg', 28, 28 %}</a>
+        <label id="theme" for="light-theme" tabindex="0">
+          <span id="theme-light">{% svgIcon 'sun-icon.svg', 32, 32 %}</span>
+          <span id="theme-dark">{% svgIcon 'moon-icon.svg', 32, 32 %}</span>
+        </label>
+        <input id="light-theme" type="checkbox"/>
+      </div>
+      {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+      <nav>
+        <h2 class="visually-hidden">Top level navigation menu</h2>
+        <ul class="nav">
+          {%- for entry in collections.all | eleventyNavigation %}
+            <li class="nav-item">
+              <a href="{{ entry.url }}" {% if entry.url == page.url %} aria-current="page" {% endif %}>{{ entry.title }}</a>
+            </li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      {{ content | safe }}
+    </main>
+  </div>
   <footer>
     <p>
       I am Calum. I enjoy nerdy things but also human topics such as teaching and writing. I am definitely a human.
