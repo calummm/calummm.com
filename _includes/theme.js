@@ -1,16 +1,17 @@
-const root = document.documentElement;
+const dataset = document.documentElement.dataset;
+const isAltTheme = !!dataset.altTheme;
 
-if (root.dataset.theme) {
-	const checkboxLightTheme = document.getElementById('light-theme');
-	checkboxLightTheme.checked = root.dataset.theme === 'light';
+// const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-	checkboxLightTheme.addEventListener('change', (e) => {
-		if (e.target.checked) {
-			localStorage.setItem('lightTheme', 'true');
-		} else {
-			localStorage.removeItem('lightTheme');
-		}
-	});
+const checkboxAltTheme = document.getElementById('alt-theme');
 
-	delete root.dataset.theme;
-}
+checkboxAltTheme.checked = isAltTheme;
+delete dataset.altTheme;
+
+checkboxAltTheme.addEventListener('change', (e) => {
+	if (e.target.checked) {
+		localStorage.setItem('altTheme', 'true');
+	} else {
+		localStorage.removeItem('altTheme');
+	}
+});

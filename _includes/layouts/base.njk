@@ -32,11 +32,17 @@
       </div>
       <div id="quick-panel">
         <a class="coffee-link" href="https://www.buymeacoffee.com/calummm" alt="Buy Me A Coffee" title="Buy Me A Coffee">{% svgIcon 'coffee.svg', 28, 28 %}</a>
-        <label id="theme" for="light-theme" tabindex="0">
+        
+        <div id="prefers-dark">
+        <label id="theme" for="alt-theme" tabindex="0">
           <span id="theme-light">{% svgIcon 'sun-icon.svg', 32, 32 %}</span>
           <span id="theme-dark">{% svgIcon 'moon-icon.svg', 32, 32 %}</span>
         </label>
-        <input id="light-theme" type="checkbox"/>
+        <input id="alt-theme" type="checkbox"/>
+        </div>
+
+        
+
       </div>
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
       <nav>

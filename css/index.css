@@ -6,40 +6,78 @@
 		Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
 		Courier, monospace;
 	--font-size: 20px;
+	--syntax-tab-size: 2;
 }
 
-/* Theme colors */
 :root {
-	--color-back: #222831;
-	--color-back-hl: #393e46;
-	--color-front: #dfd0b8;
-	--color-front-hl: #948979;
-	--syntax-tab-size: 2;
-
-	--color-gray-20: var(--color-front-hl);
-	--color-gray-50: var(--color-front-hl);
-	--color-gray-90: var(--color-front);
-
-	--text-color: var(--color-gray-90);
+	/* Default dark theme colors */
+	--text-color: #dfd0b8;
 	--text-color-link: #66baff;
 	--text-color-link-active: #ff6500;
 	--text-color-link-visited: #acacff;
-	/* --text-color-link-visited: rebeccapurple; */
-
+	--accent-color: #948979;
 	--background-color: #222831;
+
+	--theme-switch-light: flex;
+	--theme-switch-dark: none;
+
+	&:has(#alt-theme:checked),
+	&[data-alt-theme='true'] {
+		--text-color: #3f3f44;
+		--text-color-link: #0a38ce;
+		--text-color-link-active: #ff6500;
+		--text-color-link-visited: rebeccapurple;
+		--accent-color: #5f5f66;
+		--background-color: #fdf5e6;
+
+		--theme-switch-light: none;
+		--theme-switch-dark: flex;
+	}
+
+	@media (prefers-color-scheme: light) {
+		--text-color: #3f3f44;
+		--text-color-link: #0a38ce;
+		--text-color-link-active: #ff6500;
+		--text-color-link-visited: rebeccapurple;
+		--accent-color: #5f5f66;
+		--background-color: #fdf5e6;
+
+		--theme-switch-light: none;
+		--theme-switch-dark: flex;
+
+		&:has(#alt-theme:checked),
+		&[data-alt-theme='true'] {
+			--text-color: #dfd0b8;
+			--text-color-link: #66baff;
+			--text-color-link-active: #ff6500;
+			--text-color-link-visited: #acacff;
+			--accent-color: #948979;
+			--background-color: #222831;
+
+			--theme-switch-light: flex;
+			--theme-switch-dark: none;
+		}
+	}
 }
 
 #theme-light {
+	display: var(--theme-switch-light);
+}
+#theme-dark {
+	display: var(--theme-switch-dark);
+}
+
+/* #theme-light {
 	display: flex;
 }
 #theme-dark {
 	display: none;
-}
-#light-theme {
+} */
+#alt-theme {
 	display: none;
 }
 
-:has(#light-theme:checked),
+/* :has(#alt-theme:checked),
 html[data-theme='light'] {
 	--color-gray-20: #e0e0e0;
 	--color-gray-50: #c0c0c0;
@@ -57,9 +95,9 @@ html[data-theme='light'] {
 	#theme-dark {
 		display: flex;
 	}
-}
+} */
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
 	:root {
 		--color-gray-20: #e0e0e0;
 		--color-gray-50: #c0c0c0;
@@ -78,7 +116,7 @@ html[data-theme='light'] {
 	#theme-dark {
 		display: flex;
 	}
-}
+} */
 
 #theme svg {
 	width: 32px;
@@ -208,7 +246,7 @@ footer p {
 }
 
 header {
-	border-bottom: 1px dashed var(--color-gray-20);
+	border-bottom: 1px dashed var(--accent-color);
 }
 
 #skip-link {
@@ -216,7 +254,7 @@ header {
 	background: var(--background-color);
 	color: var(--text-color);
 	padding: 0.5rem 1rem;
-	border: 1px solid var(--color-gray-90);
+	border: 1px solid var(--text-color);
 	border-radius: 2px;
 }
 
@@ -245,7 +283,7 @@ header {
 	justify-content: space-between;
 	gap: 0.5em 1em;
 	list-style: '';
-	border-top: 1px dashed var(--color-gray-20);
+	border-top: 1px dashed var(--accent-color);
 	padding: 1em 0;
 	margin-top: 3rem;
 }
@@ -386,7 +424,7 @@ body header label:focus-visible {
 .postlist-date,
 .postlist-item:before {
 	font-size: 0.8125em; /* 13px /16 */
-	color: var(--color-gray-90);
+	color: var(--text-color);
 }
 .postlist-date {
 	word-spacing: -0.5px;
