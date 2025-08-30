@@ -12,6 +12,8 @@
     <meta name="description" content="{{ description or metadata.description }}">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
     <meta name="generator" content="{{ eleventy.generator }}">
+    <meta property="og:image" "/android-chrome-512x512.png" />
+    <meta property="twitter:image" content="/android-chrome-512x512.png" />
     <script eleventy:ignore>{% include "pre.js" %}</script>
     <script>{% include "theme.js" %}</script>
     <style>/* This is an arbitrary CSS string added to the bundle */</style>
