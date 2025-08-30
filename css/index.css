@@ -21,6 +21,8 @@
 	--theme-switch-light: flex;
 	--theme-switch-dark: none;
 
+	color-scheme: dark;
+
 	&:has(#alt-theme:checked),
 	&[data-alt-theme='true'] {
 		--text-color: #3f3f44;
@@ -32,6 +34,8 @@
 
 		--theme-switch-light: none;
 		--theme-switch-dark: flex;
+
+		color-scheme: light;
 	}
 
 	@media (prefers-color-scheme: light) {
@@ -45,6 +49,8 @@
 		--theme-switch-light: none;
 		--theme-switch-dark: flex;
 
+		color-scheme: light;
+
 		&:has(#alt-theme:checked),
 		&[data-alt-theme='true'] {
 			--text-color: #dfd0b8;
@@ -56,6 +62,8 @@
 
 			--theme-switch-light: flex;
 			--theme-switch-dark: none;
+
+			color-scheme: dark;
 		}
 	}
 }
